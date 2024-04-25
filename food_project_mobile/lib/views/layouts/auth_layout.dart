@@ -6,23 +6,30 @@ class AuthLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Image.asset(
-          "assets/images/bg_auth.png",
-          fit: BoxFit.cover,
-          width: double.infinity,
-          height: double.infinity,
-        ),
-        SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              children: children,
-            ),
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.black.withOpacity(.01),
+        elevation: 0,
+      ),
+      body: Stack(
+        children: [
+          Image.asset(
+            "assets/images/bg_auth.png",
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
           ),
-        )
-      ],
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: children,
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
