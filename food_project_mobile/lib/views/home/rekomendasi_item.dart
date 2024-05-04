@@ -14,7 +14,9 @@ class RekomendasiItem extends StatelessWidget {
 
     return MaterialButton(
       clipBehavior: Clip.hardEdge,
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pushNamed(context, "/detail", arguments: produk);
+      },
       padding: EdgeInsets.zero,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       elevation: 5,
