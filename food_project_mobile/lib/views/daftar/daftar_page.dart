@@ -68,7 +68,7 @@ class _DaftarPageState extends State<DaftarPage> {
           onPressed: submitDaftar,
           margin: const EdgeInsets.only(top: 0, bottom: 30),
           child: const Text(
-            "Masuk Akun",
+            "Daftar",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w600,

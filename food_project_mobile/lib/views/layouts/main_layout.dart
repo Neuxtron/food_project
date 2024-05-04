@@ -20,10 +20,12 @@ class _MainLayoutState extends State<MainLayout> {
     AppBar(
       backgroundColor: Colors.black.withOpacity(.01),
       elevation: 0,
+      surfaceTintColor: Colors.transparent,
     ),
     AppBar(
       backgroundColor: Colors.black.withOpacity(.01),
       elevation: 0,
+      surfaceTintColor: Colors.transparent,
     ),
     AppBar(
       backgroundColor: Colors.white,
@@ -34,10 +36,12 @@ class _MainLayoutState extends State<MainLayout> {
           fontSize: 16,
         ),
       ),
+      surfaceTintColor: Colors.transparent,
     ),
     AppBar(
       backgroundColor: Colors.black.withOpacity(.01),
       elevation: 0,
+      surfaceTintColor: Colors.transparent,
     ),
   ];
 

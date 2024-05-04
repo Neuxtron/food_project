@@ -42,7 +42,7 @@ class RekomendasiItem extends StatelessWidget {
                     color: AppConstants.primary,
                   ),
                 ),
-                // TODO: konfirmasi
+                // TODO: konfirmasi rating
                 const SizedBox(height: 25),
                 Row(
                   children: [
