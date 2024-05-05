@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_project/models/kategori_model.dart';
 
 class Kategori extends StatelessWidget {
   const Kategori({super.key});
@@ -6,10 +7,26 @@ class Kategori extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final listKategory = [
-      ["assets/images/noodles.png", "Noodle"],
-      ["assets/images/chickens.png", "Chicken"],
-      ["assets/images/snack.png", "Snack"],
-      ["assets/images/gyoza.png", "Gyoza"],
+      KategoriModel(
+        id: 0,
+        icon: "assets/images/noodles.png",
+        nama: "Noodle",
+      ),
+      KategoriModel(
+        id: 0,
+        icon: "assets/images/chickens.png",
+        nama: "Chicken",
+      ),
+      KategoriModel(
+        id: 0,
+        icon: "assets/images/snack.png",
+        nama: "Snack",
+      ),
+      KategoriModel(
+        id: 0,
+        icon: "assets/images/gyoza.png",
+        nama: "Gyoza",
+      ),
     ];
 
     return Column(
@@ -32,10 +49,10 @@ class Kategori extends StatelessWidget {
                 onTap: () {},
                 child: Column(
                   children: [
-                    Image.asset(item[0], width: 70),
+                    Image.asset(item.icon, width: 70),
                     const SizedBox(height: 10),
                     Text(
-                      item[1],
+                      item.nama,
                       style: const TextStyle(fontWeight: FontWeight.w600),
                     ),
                   ],

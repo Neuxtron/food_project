@@ -23,11 +23,6 @@ class _MainLayoutState extends State<MainLayout> {
       surfaceTintColor: Colors.transparent,
     ),
     AppBar(
-      backgroundColor: Colors.black.withOpacity(.01),
-      elevation: 0,
-      surfaceTintColor: Colors.transparent,
-    ),
-    AppBar(
       backgroundColor: Colors.white,
       title: const Text(
         "Keranjang saya",
@@ -36,6 +31,11 @@ class _MainLayoutState extends State<MainLayout> {
           fontSize: 16,
         ),
       ),
+      surfaceTintColor: Colors.transparent,
+    ),
+    AppBar(
+      backgroundColor: Colors.black.withOpacity(.01),
+      elevation: 0,
       surfaceTintColor: Colors.transparent,
     ),
     AppBar(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_project/models/produk_model.dart';
-import 'package:food_project/utils/app_constants.dart';
+import 'package:food_project/views/detail_produk/detail_deskripsi.dart';
+import 'package:food_project/views/widgets/cu_back_button.dart';
 import 'package:intl/intl.dart';
 
 import 'detail_actions.dart';
@@ -28,30 +29,7 @@ class DetailProdukPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 DetailTitle(hargaString: hargaString, produk: produk),
-                const Divider(
-                  color: Colors.black26,
-                  thickness: 1,
-                  height: 70,
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(24, 0, 24, 50),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "Tentang",
-                        style: TextStyle(fontWeight: FontWeight.w600),
-                      ),
-                      const SizedBox(height: 10),
-                      Text(produk.deskripsi),
-                    ],
-                  ),
-                ),
-                const Divider(
-                  color: Colors.black26,
-                  thickness: 1,
-                  height: 100,
-                ),
+                DetailDeskripsi(deskripsi: produk.deskripsi),
                 DetailActions(produk: produk, hargaString: hargaString),
                 const SizedBox(height: 10),
               ],
@@ -67,20 +45,7 @@ class DetailProdukPage extends StatelessWidget {
       elevation: 0,
       backgroundColor: Colors.transparent,
       surfaceTintColor: Colors.transparent,
-      leading: IconButton(
-        onPressed: () => Navigator.pop(context),
-        icon: Container(
-          padding: const EdgeInsets.all(3),
-          decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            color: Colors.white,
-          ),
-          child: const Icon(
-            Icons.arrow_back,
-            color: AppConstants.primary,
-          ),
-        ),
-      ),
+      leading: const CuBackButton(),
     );
   }
 }
