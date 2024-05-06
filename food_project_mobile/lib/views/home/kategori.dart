@@ -46,7 +46,7 @@ class Kategori extends StatelessWidget {
           children: listKategory.map((item) {
             return Expanded(
               child: InkWell(
-                onTap: () {},
+                onTap: () => Navigator.pushNamed(context, "/kategori"),
                 child: Column(
                   children: [
                     Image.asset(item.icon, width: 70),
