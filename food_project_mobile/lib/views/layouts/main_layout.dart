@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_project/utils/app_icons.dart';
 import 'package:food_project/views/home/home_page.dart';
+import 'package:food_project/views/keranjang/keranjang_page.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
@@ -12,7 +13,7 @@ class MainLayout extends StatefulWidget {
 class _MainLayoutState extends State<MainLayout> {
   final _pages = [
     const HomePage(),
-    const Center(child: Text("Keranjang")),
+    const KeranjangPage(),
     const Center(child: Text("Riwayat")),
     const Center(child: Text("Profil")),
   ];

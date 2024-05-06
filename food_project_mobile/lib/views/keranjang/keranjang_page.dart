@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:food_project/models/keranjang_model.dart';
+import 'package:food_project/models/produk_model.dart';
 import 'package:food_project/utils/app_constants.dart';
+import 'package:food_project/views/keranjang/keranjang_item.dart';
 import 'package:food_project/views/widgets/cu_button.dart';
+import 'package:intl/intl.dart';
 
 class KeranjangPage extends StatefulWidget {
   const KeranjangPage({super.key});
@@ -11,14 +15,102 @@ class KeranjangPage extends StatefulWidget {
 }
 
 class _KeranjangPageState extends State<KeranjangPage> {
-  int _total = 0;
+  final _formatter = NumberFormat('#,##,###');
+  String get _hargaString => _formatter.format(_total);
+
+  final _dummyKeranjang = [
+    KeranjangModel(
+      id: 0,
+      produk: ProdukModel(
+        id: 0,
+        nama: "Korean Spicy Chicken",
+        harga: 15000,
+        gambar: [
+          "https://i.ytimg.com/vi/XnLWBoZn710/maxresdefault.jpg",
+          "https://i.ytimg.com/vi/XnLWBoZn710/maxresdefault.jpg",
+          "https://i.ytimg.com/vi/XnLWBoZn710/maxresdefault.jpg",
+        ],
+        rating: 4.5,
+        ratingCount: 100,
+        deskripsi:
+            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia tempora alias quod beatae eligendi, nemo quam deserunt ad ex modi natus sed quidem corporis perspiciatis. Molestiae, ratione blanditiis! Consequatur libero exercitationem est laudantium reprehenderit modi inventore impedit, quibusdam quas eligendi illum, a soluta dolorem quis, quaerat sit dolorum voluptates mollitia nihil corrupti rerum numquam ipsa saepe deserunt! Quisquam amet fuga necessitatibus natus, laborum repellendus omnis sapiente adipisci asperiores dicta labore voluptates? Recusandae nemo neque sapiente quia tenetur reprehenderit, dicta suscipit veniam temporibus atque magnam dolorem nam iste accusantium eius beatae velit porro ex explicabo ipsa quasi similique? Deleniti, laboriosam quibusdam?",
+      ),
+      amount: 0,
+    ),
+    KeranjangModel(
+      id: 1,
+      produk: ProdukModel(
+        id: 0,
+        nama: "Korean Spicy Chicken",
+        harga: 15000,
+        gambar: [
+          "https://i.ytimg.com/vi/XnLWBoZn710/maxresdefault.jpg",
+          "https://i.ytimg.com/vi/XnLWBoZn710/maxresdefault.jpg",
+          "https://i.ytimg.com/vi/XnLWBoZn710/maxresdefault.jpg",
+        ],
+        rating: 4.5,
+        ratingCount: 100,
+        deskripsi:
+            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia tempora alias quod beatae eligendi, nemo quam deserunt ad ex modi natus sed quidem corporis perspiciatis. Molestiae, ratione blanditiis! Consequatur libero exercitationem est laudantium reprehenderit modi inventore impedit, quibusdam quas eligendi illum, a soluta dolorem quis, quaerat sit dolorum voluptates mollitia nihil corrupti rerum numquam ipsa saepe deserunt! Quisquam amet fuga necessitatibus natus, laborum repellendus omnis sapiente adipisci asperiores dicta labore voluptates? Recusandae nemo neque sapiente quia tenetur reprehenderit, dicta suscipit veniam temporibus atque magnam dolorem nam iste accusantium eius beatae velit porro ex explicabo ipsa quasi similique? Deleniti, laboriosam quibusdam?",
+      ),
+      amount: 0,
+    ),
+    KeranjangModel(
+      id: 2,
+      produk: ProdukModel(
+        id: 0,
+        nama: "Korean Spicy Chicken",
+        harga: 15000,
+        gambar: [
+          "https://i.ytimg.com/vi/XnLWBoZn710/maxresdefault.jpg",
+          "https://i.ytimg.com/vi/XnLWBoZn710/maxresdefault.jpg",
+          "https://i.ytimg.com/vi/XnLWBoZn710/maxresdefault.jpg",
+        ],
+        rating: 4.5,
+        ratingCount: 100,
+        deskripsi:
+            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia tempora alias quod beatae eligendi, nemo quam deserunt ad ex modi natus sed quidem corporis perspiciatis. Molestiae, ratione blanditiis! Consequatur libero exercitationem est laudantium reprehenderit modi inventore impedit, quibusdam quas eligendi illum, a soluta dolorem quis, quaerat sit dolorum voluptates mollitia nihil corrupti rerum numquam ipsa saepe deserunt! Quisquam amet fuga necessitatibus natus, laborum repellendus omnis sapiente adipisci asperiores dicta labore voluptates? Recusandae nemo neque sapiente quia tenetur reprehenderit, dicta suscipit veniam temporibus atque magnam dolorem nam iste accusantium eius beatae velit porro ex explicabo ipsa quasi similique? Deleniti, laboriosam quibusdam?",
+      ),
+      amount: 0,
+    ),
+  ];
+
+  int get _total {
+    int total = 0;
+    for (var keranjang in _dummyKeranjang) {
+      if (keranjang.isChecked) {
+        total += keranjang.produk.harga * keranjang.amount;
+      }
+    }
+    return total;
+  }
+
+  void updateKeranjang(int id, bool isChecked, int amount) {
+    final index = _dummyKeranjang.indexWhere((keranjang) {
+      return keranjang.id == id;
+    });
+
+    _dummyKeranjang[index].isChecked = isChecked;
+    _dummyKeranjang[index].amount = amount;
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // ListView.builder(itemBuilder: itemBuilder),
-        const Expanded(child: SizedBox()),
+        Expanded(
+          child: ListView.builder(
+            itemCount: _dummyKeranjang.length,
+            itemBuilder: (context, index) {
+              final keranjang = _dummyKeranjang[index];
+              return KeranjangItem(
+                keranjang: keranjang,
+                updateKeranjang: updateKeranjang,
+              );
+            },
+          ),
+        ),
         const Divider(color: Colors.black12),
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
@@ -28,7 +120,7 @@ class _KeranjangPageState extends State<KeranjangPage> {
               SvgPicture.asset("assets/icons/ic_keranjang_active.svg"),
               const SizedBox(width: 10),
               Text(
-                "Rp$_total",
+                "Rp$_hargaString",
                 style: const TextStyle(
                   color: AppConstants.primary,
                   fontWeight: FontWeight.w600,

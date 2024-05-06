@@ -13,6 +13,8 @@ void main() {
 class FoodProjectApp extends StatelessWidget {
   const FoodProjectApp({super.key});
 
+  // Color fillColor(states) {}
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,8 +24,9 @@ class FoodProjectApp extends StatelessWidget {
         fontFamily: "Poppins",
         colorScheme: ColorScheme.fromSeed(seedColor: AppConstants.primary),
         scaffoldBackgroundColor: AppConstants.background,
-        // TODO: checkbox theme
-        // checkboxTheme: CheckboxThemeData()
+        checkboxTheme: const CheckboxThemeData(
+          side: BorderSide(color: AppConstants.primary),
+        ),
       ),
       initialRoute: "/",
       routes: {
