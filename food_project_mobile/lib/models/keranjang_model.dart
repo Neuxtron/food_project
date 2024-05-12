@@ -9,6 +9,6 @@ class KeranjangModel {
   KeranjangModel({
     required this.id,
     required this.produk,
-    required this.amount,
+    this.amount = 1,
   });
 }

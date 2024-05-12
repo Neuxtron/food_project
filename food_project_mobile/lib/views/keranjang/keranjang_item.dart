@@ -33,7 +33,6 @@ class KeranjangItem extends StatelessWidget {
         ],
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Checkbox(
             value: keranjang.isChecked,
@@ -81,7 +80,7 @@ class KeranjangItem extends StatelessWidget {
                 ),
                 ItemActions(
                   onRemove: () {
-                    if (keranjang.amount > 0) {
+                    if (keranjang.amount > 1) {
                       updateKeranjang(
                         keranjang.id,
                         keranjang.isChecked,
