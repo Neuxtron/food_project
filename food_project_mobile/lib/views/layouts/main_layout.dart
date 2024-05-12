@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_project/utils/app_icons.dart';
 import 'package:food_project/views/home/home_page.dart';
 import 'package:food_project/views/keranjang/keranjang_page.dart';
+import 'package:food_project/views/riwayat/riwayat_page.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
@@ -14,7 +15,7 @@ class _MainLayoutState extends State<MainLayout> {
   final _pages = [
     const HomePage(),
     const KeranjangPage(),
-    const Center(child: Text("Riwayat")),
+    const RiwayatPage(),
     const Center(child: Text("Profil")),
   ];
   final _appbars = [
@@ -35,8 +36,14 @@ class _MainLayoutState extends State<MainLayout> {
       surfaceTintColor: Colors.transparent,
     ),
     AppBar(
-      backgroundColor: Colors.black.withOpacity(.01),
-      elevation: 0,
+      backgroundColor: Colors.white,
+      title: const Text(
+        "Riwayat",
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 16,
+        ),
+      ),
       surfaceTintColor: Colors.transparent,
     ),
     AppBar(
