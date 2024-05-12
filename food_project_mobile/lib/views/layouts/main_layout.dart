@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_project/utils/app_icons.dart';
 import 'package:food_project/views/home/home_page.dart';
 import 'package:food_project/views/keranjang/keranjang_page.dart';
+import 'package:food_project/views/profile/profile_page.dart';
 import 'package:food_project/views/riwayat/riwayat_page.dart';
 
 class MainLayout extends StatefulWidget {
@@ -16,44 +18,62 @@ class _MainLayoutState extends State<MainLayout> {
     const HomePage(),
     const KeranjangPage(),
     const RiwayatPage(),
-    const Center(child: Text("Profil")),
+    const ProfilePage(),
   ];
-  final _appbars = [
-    AppBar(
-      backgroundColor: Colors.black.withOpacity(.01),
-      elevation: 0,
-      surfaceTintColor: Colors.transparent,
-    ),
-    AppBar(
-      backgroundColor: Colors.white,
-      title: const Text(
-        "Keranjang saya",
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 16,
-        ),
+  List<AppBar> get _appbars {
+    return [
+      AppBar(
+        backgroundColor: Colors.black.withOpacity(.01),
+        elevation: 0,
+        surfaceTintColor: Colors.transparent,
       ),
-      surfaceTintColor: Colors.transparent,
-    ),
-    AppBar(
-      backgroundColor: Colors.white,
-      title: const Text(
-        "Riwayat",
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 16,
+      AppBar(
+        backgroundColor: Colors.white,
+        title: const Text(
+          "Keranjang saya",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
         ),
+        surfaceTintColor: Colors.transparent,
       ),
-      surfaceTintColor: Colors.transparent,
-    ),
-    AppBar(
-      backgroundColor: Colors.black.withOpacity(.01),
-      elevation: 0,
-      surfaceTintColor: Colors.transparent,
-    ),
-  ];
+      AppBar(
+        backgroundColor: Colors.white,
+        title: const Text(
+          "Riwayat",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+        ),
+        surfaceTintColor: Colors.transparent,
+      ),
+      AppBar(
+        backgroundColor: Colors.transparent,
+        title: const Text(
+          "Profile",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: logout,
+            icon: SvgPicture.asset("assets/icons/ic_logout.svg"),
+          ),
+        ],
+        surfaceTintColor: Colors.transparent,
+      ),
+    ];
+  }
 
   int _currIndex = 0;
+
+  void logout() {}
 
   @override
   Widget build(BuildContext context) {
