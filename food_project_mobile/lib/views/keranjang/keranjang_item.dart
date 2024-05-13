@@ -6,12 +6,14 @@ import 'package:intl/intl.dart';
 
 class KeranjangItem extends StatelessWidget {
   final KeranjangModel keranjang;
-  final Function(int id, bool isChecked, int amount) updateKeranjang;
+  final int index;
+  final Function(int index, bool isChecked, int amount) updateKeranjang;
 
   const KeranjangItem({
     super.key,
     required this.keranjang,
     required this.updateKeranjang,
+    required this.index,
   });
 
   @override
@@ -38,7 +40,7 @@ class KeranjangItem extends StatelessWidget {
             value: keranjang.isChecked,
             onChanged: (value) {
               updateKeranjang(
-                keranjang.id,
+                index,
                 !keranjang.isChecked,
                 keranjang.amount,
               );
@@ -82,7 +84,7 @@ class KeranjangItem extends StatelessWidget {
                   onRemove: () {
                     if (keranjang.amount > 1) {
                       updateKeranjang(
-                        keranjang.id,
+                        index,
                         keranjang.isChecked,
                         --keranjang.amount,
                       );
@@ -90,7 +92,7 @@ class KeranjangItem extends StatelessWidget {
                   },
                   onAdd: () {
                     updateKeranjang(
-                      keranjang.id,
+                      index,
                       keranjang.isChecked,
                       ++keranjang.amount,
                     );

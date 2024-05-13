@@ -18,9 +18,18 @@ class _KeranjangPageState extends State<KeranjangPage> {
   final _formatter = NumberFormat('#,##,###');
   String get _hargaString => _formatter.format(_total);
 
+  List<KeranjangModel> get _listOrder {
+    final List<KeranjangModel> listOrder = [];
+
+    for (var trolley in _dummyKeranjang) {
+      if (trolley.isChecked) listOrder.add(trolley);
+    }
+
+    return listOrder;
+  }
+
   final _dummyKeranjang = [
     KeranjangModel(
-      id: 0,
       produk: ProdukModel(
         id: 0,
         nama: "Korean Spicy Chicken",
@@ -37,7 +46,6 @@ class _KeranjangPageState extends State<KeranjangPage> {
       ),
     ),
     KeranjangModel(
-      id: 1,
       produk: ProdukModel(
         id: 0,
         nama: "Korean Spicy Chicken",
@@ -54,7 +62,6 @@ class _KeranjangPageState extends State<KeranjangPage> {
       ),
     ),
     KeranjangModel(
-      id: 2,
       produk: ProdukModel(
         id: 0,
         nama: "Korean Spicy Chicken",
@@ -82,14 +89,16 @@ class _KeranjangPageState extends State<KeranjangPage> {
     return total;
   }
 
-  void updateKeranjang(int id, bool isChecked, int amount) {
-    final index = _dummyKeranjang.indexWhere((keranjang) {
-      return keranjang.id == id;
-    });
-
+  void updateKeranjang(int index, bool isChecked, int amount) {
     _dummyKeranjang[index].isChecked = isChecked;
     _dummyKeranjang[index].amount = amount;
     setState(() {});
+  }
+
+  void submitBeli() {
+    if (_listOrder.isNotEmpty) {
+      Navigator.pushNamed(context, "/pembayaran", arguments: _listOrder);
+    }
   }
 
   @override
@@ -110,6 +119,7 @@ class _KeranjangPageState extends State<KeranjangPage> {
               return KeranjangItem(
                 keranjang: keranjang,
                 updateKeranjang: updateKeranjang,
+                index: index,
               );
             },
           ),
@@ -131,7 +141,7 @@ class _KeranjangPageState extends State<KeranjangPage> {
               ),
               const Expanded(child: SizedBox()),
               CuButton(
-                onPressed: () {},
+                onPressed: submitBeli,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                 radius: 10,

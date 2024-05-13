@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:food_project/models/user_model.dart';
+import 'package:food_project/viewmodels/user_view_model.dart';
 import 'package:food_project/views/profile/profile_item.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final user = UserModel(
-      nama: "MIsteln",
-      telepon: "0893830303",
-      kecamatan: "Kota Lhokseumawe",
-    );
+    final user = context.read<UserViewModel>().user!;
 
     return Stack(
       children: [
