@@ -13,11 +13,20 @@ class SubmitSection extends StatelessWidget {
     required this.ongkir,
   });
 
-  void submitPembayaran() {}
+  int get _total => harga + ongkir;
+
+  void submitPembayaran(BuildContext context) {
+    // TODO: submit pembayaran
+    Navigator.pushReplacementNamed(
+      context,
+      "/bayar_berhasil",
+      arguments: _total,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    final totalString = NumberFormat("#,##,###").format(ongkir + harga);
+    final totalString = NumberFormat("#,##,###").format(_total);
 
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 10, 20, 30),
@@ -52,7 +61,7 @@ class SubmitSection extends StatelessWidget {
             ),
           ),
           CuButton(
-            onPressed: submitPembayaran,
+            onPressed: () => submitPembayaran(context),
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
             radius: 10,
             child: const Text(

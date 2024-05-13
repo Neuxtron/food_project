@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:food_project/utils/app_constants.dart';
+import 'package:food_project/viewmodels/kategori_view_model.dart';
+import 'package:food_project/viewmodels/produk_view_model.dart';
 import 'package:food_project/viewmodels/user_view_model.dart';
 import 'package:food_project/views/auth_check.dart';
+import 'package:food_project/views/bayar_berhasil/bayar_berhasil_page.dart';
 import 'package:food_project/views/daftar/daftar_page.dart';
 import 'package:food_project/views/detail_produk/detail_produk_page.dart';
 import 'package:food_project/views/kategori/kategori_page.dart';
@@ -24,6 +27,8 @@ class FoodProjectApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => UserViewModel()),
+        ChangeNotifierProvider(create: (context) => KategoriViewModel()),
+        ChangeNotifierProvider(create: (context) => ProdukViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -42,10 +47,10 @@ class FoodProjectApp extends StatelessWidget {
           "/daftar": (context) => const DaftarPage(),
           "/main": (context) => const MainLayout(),
           "/detail": (context) => const DetailProdukPage(),
-          // TODO: kategori args
           "/kategori": (context) => const KategoriPage(),
           "/pembayaran": (context) => const PembayaranPage(),
           "/metode_bayar": (context) => const MetodeBayarPage(),
+          "/bayar_berhasil": (context) => const BayarBerhasilPage(),
         },
       ),
     );

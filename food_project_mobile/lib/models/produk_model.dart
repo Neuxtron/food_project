@@ -6,6 +6,7 @@ class ProdukModel {
   final double rating;
   final int ratingCount;
   final String deskripsi;
+  final int idKategori;
 
   ProdukModel({
     required this.id,
@@ -15,6 +16,7 @@ class ProdukModel {
     required this.rating,
     required this.ratingCount,
     required this.deskripsi,
+    required this.idKategori,
   });
 
   String get formattedRatingCount {

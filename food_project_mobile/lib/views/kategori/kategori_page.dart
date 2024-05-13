@@ -1,42 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:food_project/models/kategori_model.dart';
 import 'package:food_project/models/produk_model.dart';
 import 'package:food_project/utils/app_constants.dart';
+import 'package:food_project/viewmodels/produk_view_model.dart';
 import 'package:food_project/views/widgets/cu_back_button.dart';
 import 'package:food_project/views/widgets/cu_rating.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class KategoriPage extends StatelessWidget {
   const KategoriPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final formatter = NumberFormat('#,##,000');
-    List<ProdukModel> listProdukKategori = [
-      ProdukModel(
-        id: 0,
-        nama: "Korean Spicy Chicken",
-        harga: 15000,
-        gambar: [
-          "https://i.ytimg.com/vi/XnLWBoZn710/maxresdefault.jpg",
-          "https://i.ytimg.com/vi/XnLWBoZn710/maxresdefault.jpg",
-          "https://i.ytimg.com/vi/XnLWBoZn710/maxresdefault.jpg",
-        ],
-        rating: 4.5,
-        ratingCount: 100,
-        deskripsi:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia tempora alias quod beatae eligendi, nemo quam deserunt ad ex modi natus sed quidem corporis perspiciatis. Molestiae, ratione blanditiis! Consequatur libero exercitationem est laudantium reprehenderit modi inventore impedit, quibusdam quas eligendi illum, a soluta dolorem quis, quaerat sit dolorum voluptates mollitia nihil corrupti rerum numquam ipsa saepe deserunt! Quisquam amet fuga necessitatibus natus, laborum repellendus omnis sapiente adipisci asperiores dicta labore voluptates? Recusandae nemo neque sapiente quia tenetur reprehenderit, dicta suscipit veniam temporibus atque magnam dolorem nam iste accusantium eius beatae velit porro ex explicabo ipsa quasi similique? Deleniti, laboriosam quibusdam?",
-      ),
-      ProdukModel(
-        id: 0,
-        nama: "Korean Spicy Chicken",
-        harga: 15000,
-        gambar: ["https://i.ytimg.com/vi/XnLWBoZn710/maxresdefault.jpg"],
-        rating: 4.5,
-        ratingCount: 100,
-        deskripsi:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia tempora alias quod beatae eligendi, nemo quam deserunt ad ex modi natus sed quidem corporis perspiciatis. Molestiae, ratione blanditiis! Consequatur libero exercitationem est laudantium reprehenderit modi inventore impedit, quibusdam quas eligendi illum, a soluta dolorem quis, quaerat sit dolorum voluptates mollitia nihil corrupti rerum numquam ipsa saepe deserunt! Quisquam amet fuga necessitatibus natus, laborum repellendus omnis sapiente adipisci asperiores dicta labore voluptates? Recusandae nemo neque sapiente quia tenetur reprehenderit, dicta suscipit veniam temporibus atque magnam dolorem nam iste accusantium eius beatae velit porro ex explicabo ipsa quasi similique? Deleniti, laboriosam quibusdam?",
-      ),
-    ];
+    final formatter = NumberFormat('#,##,###');
+    final kategori =
+        ModalRoute.of(context)!.settings.arguments as KategoriModel;
+
+    List<ProdukModel> listProdukKategori =
+        context.read<ProdukViewModel>().byCategory(kategori.id);
 
     return Scaffold(
       extendBodyBehindAppBar: true,

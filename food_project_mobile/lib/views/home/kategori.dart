@@ -8,22 +8,22 @@ class Kategori extends StatelessWidget {
   Widget build(BuildContext context) {
     final listKategory = [
       KategoriModel(
-        id: 0,
+        id: 1,
         icon: "assets/images/noodles.png",
         nama: "Noodle",
       ),
       KategoriModel(
-        id: 0,
+        id: 2,
         icon: "assets/images/chickens.png",
         nama: "Chicken",
       ),
       KategoriModel(
-        id: 0,
+        id: 3,
         icon: "assets/images/snack.png",
         nama: "Snack",
       ),
       KategoriModel(
-        id: 0,
+        id: 4,
         icon: "assets/images/gyoza.png",
         nama: "Gyoza",
       ),
@@ -43,16 +43,19 @@ class Kategori extends StatelessWidget {
           ),
         ),
         Row(
-          children: listKategory.map((item) {
+          children: listKategory.map((kategori) {
             return Expanded(
               child: InkWell(
-                onTap: () => Navigator.pushNamed(context, "/kategori"),
+                onTap: () {
+                  Navigator.pushNamed(context, "/kategori",
+                      arguments: kategori);
+                },
                 child: Column(
                   children: [
-                    Image.asset(item.icon, width: 70),
+                    Image.asset(kategori.icon, width: 70),
                     const SizedBox(height: 10),
                     Text(
-                      item.nama,
+                      kategori.nama,
                       style: const TextStyle(fontWeight: FontWeight.w600),
                     ),
                   ],
