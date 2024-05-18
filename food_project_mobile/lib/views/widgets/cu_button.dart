@@ -9,6 +9,7 @@ class CuButton extends StatelessWidget {
   final EdgeInsetsGeometry margin;
   final EdgeInsetsGeometry padding;
   final double? minWidth;
+  final bool loading;
 
   const CuButton({
     super.key,
@@ -18,6 +19,7 @@ class CuButton extends StatelessWidget {
     this.color = AppConstants.primary,
     this.radius = 999,
     this.margin = EdgeInsets.zero,
+    this.loading = false,
     this.padding = const EdgeInsets.symmetric(
       vertical: 10,
       horizontal: 70,
@@ -29,12 +31,13 @@ class CuButton extends StatelessWidget {
     return Padding(
       padding: margin,
       child: MaterialButton(
-        onPressed: onPressed,
+        onPressed: loading ? null : onPressed,
         color: color,
         minWidth: minWidth,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radius),
         ),
+        disabledColor: AppConstants.primary.withOpacity(.5),
         padding: padding,
         child: child,
       ),

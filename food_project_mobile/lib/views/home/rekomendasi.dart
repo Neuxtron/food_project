@@ -5,12 +5,19 @@ import 'package:food_project/views/home/rekomendasi_item.dart';
 import 'package:provider/provider.dart';
 
 class Rekomendasi extends StatelessWidget {
-  const Rekomendasi({super.key});
+  final String searchText;
+  const Rekomendasi({super.key, required this.searchText});
 
   @override
   Widget build(BuildContext context) {
     final listProduk = context.watch<ProdukViewModel>().listProduk;
     final status = context.watch<ProdukViewModel>().status;
+
+    final searchList = listProduk.where((produk) {
+      final searchLower = searchText.toLowerCase();
+      final namaLower = produk.nama.toLowerCase();
+      return namaLower.contains(searchLower);
+    }).toList();
 
     if (status == ServerStatus.loading) {
       return const CircularProgressIndicator();
@@ -31,7 +38,7 @@ class Rekomendasi extends StatelessWidget {
         ),
         GridView.builder(
           shrinkWrap: true,
-          itemCount: listProduk.length,
+          itemCount: searchList.length,
           physics: const NeverScrollableScrollPhysics(),
           padding: const EdgeInsets.all(20),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -41,7 +48,7 @@ class Rekomendasi extends StatelessWidget {
             crossAxisSpacing: 15,
           ),
           itemBuilder: (context, index) {
-            final produk = listProduk[index];
+            final produk = searchList[index];
 
             return RekomendasiItem(produk: produk);
           },

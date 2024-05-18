@@ -1,3 +1,4 @@
+const KecamatanModel = require("../models/kecamatan_model")
 const UserModel = require("../models/users_model")
 const { secret } = require("../utils/constants")
 const bcrypt = require("bcrypt")
@@ -9,6 +10,7 @@ class UserController {
 
     UserModel.findOne({
       where: { id },
+      include: [KecamatanModel]
     })
       .then((user) => {
         res.status(200).json({
@@ -72,15 +74,16 @@ class UserController {
   static async loginUser(req, res) {
     try {
 
-      const { email: nama, password } = req.body
+      const { nama, password } = req.body
   
       const user = await UserModel.findOne({
-        where: { nama }
+        where: { nama },
+        include: [KecamatanModel]
       })
       if (user === null) {
         res.status(401).json({
           status: false,
-          message: "Email atau password salah",
+          message: "Nama atau password salah",
           data: {},
         })
         return
@@ -90,7 +93,7 @@ class UserController {
       if (!validation) {
         res.status(401).json({
           status: false,
-          message: "Email atau password salah",
+          message: "Nama atau password salah",
           data: {},
         })
         return

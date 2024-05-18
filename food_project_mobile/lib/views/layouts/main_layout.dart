@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_project/utils/app_icons.dart';
+import 'package:food_project/viewmodels/user_view_model.dart';
 import 'package:food_project/views/home/home_page.dart';
 import 'package:food_project/views/keranjang/keranjang_page.dart';
 import 'package:food_project/views/profile/profile_page.dart';
 import 'package:food_project/views/riwayat/riwayat_page.dart';
+import 'package:provider/provider.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
@@ -73,7 +75,9 @@ class _MainLayoutState extends State<MainLayout> {
 
   int _currIndex = 0;
 
-  void logout() {}
+  void logout() {
+    context.read<UserViewModel>().logout();
+  }
 
   @override
   Widget build(BuildContext context) {

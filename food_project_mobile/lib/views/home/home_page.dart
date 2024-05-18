@@ -14,6 +14,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final _searchController = TextEditingController();
+  String _searchText = "";
+
   void getData() {
     context.read<ProdukViewModel>().getProduk();
     context.read<KategoriViewModel>().getKategori();
@@ -28,12 +31,14 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      // TODO: search
       child: Column(
-        children: const [
-          HomeBanner(),
-          Kategori(),
-          Rekomendasi(),
+        children: [
+          HomeBanner(
+            searchController: _searchController,
+            onChanged: (value) => setState(() => _searchText = value),
+          ),
+          const Kategori(),
+          Rekomendasi(searchText: _searchText),
         ],
       ),
     );

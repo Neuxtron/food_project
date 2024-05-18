@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ProfileItem extends StatelessWidget {
   final String label;
-  final String value;
+  final String? value;
 
   const ProfileItem({
     super.key,
@@ -37,7 +37,7 @@ class ProfileItem extends StatelessWidget {
             ),
           ),
           Text(
-            value,
+            value ?? "",
             style: const TextStyle(
               fontSize: 13,
               fontWeight: FontWeight.w600,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_project/utils/app_constants.dart';
 import 'package:food_project/viewmodels/kategori_view_model.dart';
+import 'package:food_project/viewmodels/kecamatan_view_model.dart';
+import 'package:food_project/viewmodels/metode_bayar_view_model.dart';
 import 'package:food_project/viewmodels/produk_view_model.dart';
 import 'package:food_project/viewmodels/user_view_model.dart';
 import 'package:food_project/views/auth_check.dart';
@@ -8,7 +10,6 @@ import 'package:food_project/views/bayar_berhasil/bayar_berhasil_page.dart';
 import 'package:food_project/views/daftar/daftar_page.dart';
 import 'package:food_project/views/detail_produk/detail_produk_page.dart';
 import 'package:food_project/views/kategori/kategori_page.dart';
-import 'package:food_project/views/layouts/main_layout.dart';
 import 'package:food_project/views/pembayaran/metode_bayar_page.dart';
 import 'package:food_project/views/pembayaran/pembayaran_page.dart';
 import 'package:provider/provider.dart';
@@ -20,8 +21,6 @@ void main() {
 class FoodProjectApp extends StatelessWidget {
   const FoodProjectApp({super.key});
 
-  // Color fillColor(states) {}
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -29,6 +28,9 @@ class FoodProjectApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => UserViewModel()),
         ChangeNotifierProvider(create: (context) => KategoriViewModel()),
         ChangeNotifierProvider(create: (context) => ProdukViewModel()),
+        ChangeNotifierProvider(create: (context) => KategoriViewModel()),
+        ChangeNotifierProvider(create: (context) => KecamatanViewModel()),
+        ChangeNotifierProvider(create: (context) => MetodeBayarViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -45,7 +47,6 @@ class FoodProjectApp extends StatelessWidget {
         routes: {
           "/": (context) => const AuthCheck(),
           "/daftar": (context) => const DaftarPage(),
-          "/main": (context) => const MainLayout(),
           "/detail": (context) => const DetailProdukPage(),
           "/kategori": (context) => const KategoriPage(),
           "/pembayaran": (context) => const PembayaranPage(),

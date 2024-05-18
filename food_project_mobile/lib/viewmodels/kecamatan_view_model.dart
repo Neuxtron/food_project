@@ -19,6 +19,7 @@ class KecamatanViewModel extends ChangeNotifier {
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body)["data"] as List;
         _listKecamatan = data.map((e) => KecamatanModel.fromJson(e)).toList();
+        notifyListeners();
       }
     } catch (e) {
       log(e.toString());

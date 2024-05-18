@@ -3,12 +3,23 @@ import 'package:food_project/viewmodels/user_view_model.dart';
 import 'package:food_project/views/profile/profile_item.dart';
 import 'package:provider/provider.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
   @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<UserViewModel>().getProfil();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final user = context.read<UserViewModel>().user!;
+    final user = context.watch<UserViewModel>().user;
 
     return Stack(
       children: [
@@ -31,15 +42,15 @@ class ProfilePage extends StatelessWidget {
               ),
               ProfileItem(
                 label: "User Name",
-                value: user.nama,
+                value: user?.nama,
               ),
               ProfileItem(
                 label: "Phone",
-                value: user.telepon,
+                value: user?.hp,
               ),
               ProfileItem(
                 label: "Location",
-                value: user.kecamatan,
+                value: user?.kecamatan,
               ),
             ],
           ),

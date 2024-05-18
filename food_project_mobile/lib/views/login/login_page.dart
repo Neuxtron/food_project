@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:food_project/viewmodels/user_view_model.dart';
 import 'package:food_project/views/widgets/auth_input.dart';
 import 'package:food_project/views/layouts/auth_layout.dart';
 import 'package:food_project/views/widgets/cu_button.dart';
+import 'package:food_project/views/widgets/error_text.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -14,8 +17,36 @@ class _LoginPageState extends State<LoginPage> {
   final _namaController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  bool _loading = false;
+  String _error = "";
+
+  bool validate() {
+    if (_namaController.text.isEmpty) {
+      setState(() => _error = "Nama tidak boleh kosong");
+      return false;
+    }
+    if (_passwordController.text.isEmpty) {
+      setState(() => _error = "Password tidak boleh kosong");
+      return false;
+    }
+
+    return true;
+  }
+
   void submitLogin() {
-    Navigator.pushReplacementNamed(context, "/main");
+    if (!validate()) return;
+    setState(() {
+      _loading = true;
+      _error = "";
+    });
+    final nama = _namaController.text.trim();
+    final password = _passwordController.text.trim();
+    context.read<UserViewModel>().login(nama, password).then((error) {
+      setState(() {
+        _loading = false;
+        _error = error;
+      });
+    });
   }
 
   @override
@@ -40,6 +71,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
         ),
+        ErrorText(error: _error),
         AuthInput(
           label: "Nama Pengguna",
           hintText: "Nama lengkap",
@@ -55,6 +87,7 @@ class _LoginPageState extends State<LoginPage> {
         CuButton(
           onPressed: submitLogin,
           margin: const EdgeInsets.symmetric(vertical: 70),
+          loading: _loading,
           child: const Text(
             "Masuk Akun",
             style: TextStyle(

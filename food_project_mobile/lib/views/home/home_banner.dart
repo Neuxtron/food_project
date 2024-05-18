@@ -2,8 +2,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class HomeBanner extends StatelessWidget {
+  final TextEditingController searchController;
+  final Function(String value) onChanged;
   const HomeBanner({
     super.key,
+    required this.searchController,
+    required this.onChanged,
   });
 
   @override
@@ -47,6 +51,8 @@ class HomeBanner extends StatelessWidget {
               ],
             ),
             child: TextField(
+              controller: searchController,
+              onChanged: onChanged,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: const Color(0xFFF4EDED),
