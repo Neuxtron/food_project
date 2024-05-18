@@ -13,9 +13,9 @@ class TotalSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hargaString = NumberFormat("#,##,###").format(harga);
-    final ongkirString = NumberFormat("#,##,###").format(ongkir);
-    final totalString = NumberFormat("#,##,###").format(ongkir + harga);
+    final hargaString = NumberFormat("###,###,###").format(harga);
+    final ongkirString = NumberFormat("###,###,###").format(ongkir);
+    final totalString = NumberFormat("###,###,###").format(ongkir + harga);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),

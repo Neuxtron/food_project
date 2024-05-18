@@ -4,7 +4,6 @@ import 'package:food_project/models/produk_model.dart';
 import 'package:food_project/utils/app_constants.dart';
 import 'package:food_project/viewmodels/produk_view_model.dart';
 import 'package:food_project/views/widgets/cu_back_button.dart';
-import 'package:food_project/views/widgets/cu_rating.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -13,7 +12,7 @@ class KategoriPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formatter = NumberFormat('#,##,###');
+    final formatter = NumberFormat('###,###,###');
     final kategori =
         ModalRoute.of(context)!.settings.arguments as KategoriModel;
 
@@ -79,10 +78,6 @@ class KategoriPage extends StatelessWidget {
                                 fontSize: 14,
                                 color: AppConstants.primary,
                               ),
-                            ),
-                            CuRating(
-                              produk: produk,
-                              mainAxisAlignment: MainAxisAlignment.end,
                             ),
                           ],
                         ),

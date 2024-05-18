@@ -8,4 +8,6 @@ class MetodeBayarModel {
     required this.nama,
     required this.gambar,
   });
+
+  // TODO: from json
 }

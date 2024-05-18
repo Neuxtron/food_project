@@ -46,7 +46,7 @@ class AlamatSection extends StatelessWidget {
                     ],
                   ),
                   Text(
-                    user.alamat,
+                    user.alamat[0],
                     style: const TextStyle(fontSize: 11),
                   ),
                 ],

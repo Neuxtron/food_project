@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_project/models/produk_model.dart';
 import 'package:food_project/utils/app_constants.dart';
-import 'package:food_project/views/widgets/cu_rating.dart';
 import 'package:intl/intl.dart';
 
 class RekomendasiItem extends StatelessWidget {
@@ -45,9 +44,7 @@ class RekomendasiItem extends StatelessWidget {
                     color: AppConstants.primary,
                   ),
                 ),
-                // TODO: konfirmasi rating
                 const SizedBox(height: 25),
-                CuRating(produk: produk),
               ],
             ),
           ),

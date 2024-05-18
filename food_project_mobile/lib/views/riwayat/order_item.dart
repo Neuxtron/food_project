@@ -11,7 +11,7 @@ class OrderItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final formatTanggal =
         DateFormat("dd MMMM yyyy").format(keranang.createdAt!);
-    final formatHarga = NumberFormat('#,##,###').format(keranang.harga);
+    final formatHarga = NumberFormat('###,###,###').format(keranang.harga);
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),

@@ -8,7 +8,7 @@ class BayarBerhasilPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final total = ModalRoute.of(context)!.settings.arguments as int;
-    final totalString = NumberFormat("#,##,###").format(total);
+    final totalString = NumberFormat("###,###,###").format(total);
     final waktuSelesai = DateTime.now();
     final waktuString = DateFormat("dd-MM-YYYY hh.mm").format(waktuSelesai);
 
@@ -56,9 +56,9 @@ class BayarBerhasilPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Icon(
                             Icons.check_circle,
                             color: Color(0xFF0FA958),

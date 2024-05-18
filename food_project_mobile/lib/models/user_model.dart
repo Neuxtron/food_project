@@ -2,7 +2,7 @@ class UserModel {
   final String nama;
   final String telepon;
   final String kecamatan;
-  final String alamat;
+  final List<String> alamat;
 
   UserModel({
     required this.nama,

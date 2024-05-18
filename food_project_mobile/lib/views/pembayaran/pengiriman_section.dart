@@ -17,7 +17,7 @@ class PengirimanSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final pengiriman = listPengiriman[index];
-    final hargaString = NumberFormat("#,##,###").format(pengiriman.harga);
+    final hargaString = NumberFormat("###,###,###").format(pengiriman.harga);
 
     final palingCepat = DateTime.now().add(
       Duration(days: pengiriman.palingCepat),

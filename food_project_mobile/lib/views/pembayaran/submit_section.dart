@@ -26,7 +26,7 @@ class SubmitSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final totalString = NumberFormat("#,##,###").format(_total);
+    final totalString = NumberFormat("###,###,###").format(_total);
 
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 10, 20, 30),

@@ -9,7 +9,8 @@ class OrderItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formatHarga = NumberFormat('#,##,###').format(keranjang.produk.harga);
+    final formatHarga =
+        NumberFormat('###,###,###').format(keranjang.produk.harga);
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),

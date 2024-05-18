@@ -45,9 +45,9 @@ class _PembayaranPageState extends State<PembayaranPage> {
   final _listMetodeBayar = [
     MetodeBayarModel(
       id: 0,
-      nama: "Kode Bayar",
+      nama: "Transfer Bank",
       gambar:
-          "https://previews.123rf.com/images/nikiteev/nikiteev1905/nikiteev190500045/123324914-vektor-schwarzer-umriss-symbol-passwort-pin-code-symbol.jpg",
+          "https://static.vecteezy.com/system/resources/thumbnails/002/249/718/small/bank-building-icon-finance-symbol-illustration-for-web-and-mobil-app-on-grey-background-free-vector.jpg",
     ),
     MetodeBayarModel(
       id: 2,
