@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_project/utils/app_icons.dart';
+import 'package:food_project/viewmodels/keranjang_riwayat_view_model.dart';
 import 'package:food_project/viewmodels/user_view_model.dart';
 import 'package:food_project/views/home/home_page.dart';
 import 'package:food_project/views/keranjang/keranjang_page.dart';
@@ -99,7 +100,12 @@ class _MainLayoutState extends State<MainLayout> {
           currentIndex: _currIndex,
           showSelectedLabels: false,
           backgroundColor: Colors.white,
-          onTap: (index) => setState(() => _currIndex = index),
+          onTap: (index) {
+            if (_currIndex == 1) {
+              context.read<KeranjangRiwayatViewModel>().updateKeranjang();
+            }
+            setState(() => _currIndex = index);
+          },
           items: [
             BottomNavigationBarItem(
               icon: AppIcons.home,

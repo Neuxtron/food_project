@@ -4,14 +4,14 @@ import 'package:food_project/utils/app_constants.dart';
 import 'package:intl/intl.dart';
 
 class OrderItem extends StatelessWidget {
-  final KeranjangModel keranang;
-  const OrderItem({super.key, required this.keranang});
+  final KeranjangModel keranjang;
+  const OrderItem({super.key, required this.keranjang});
 
   @override
   Widget build(BuildContext context) {
     final formatTanggal =
-        DateFormat("dd MMMM yyyy").format(keranang.createdAt!);
-    final formatHarga = NumberFormat('###,###,###').format(keranang.harga);
+        DateFormat("dd MMMM yyyy").format(keranjang.createdAt!);
+    final formatHarga = NumberFormat('###,###,###').format(keranjang.harga);
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -20,7 +20,7 @@ class OrderItem extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Image.network(
-              keranang.produk.gambar[0],
+              keranjang.produk.gambar[0],
               width: 120,
               height: 70,
               fit: BoxFit.cover,
@@ -33,7 +33,7 @@ class OrderItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    keranang.produk.nama,
+                    keranjang.produk.nama,
                     style: const TextStyle(
                       fontWeight: FontWeight.w600,
                     ),

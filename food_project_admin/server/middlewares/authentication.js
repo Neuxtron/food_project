@@ -6,13 +6,14 @@ async function authentication(req, res, next) {
   try {
 
     const bearer = req.headers.authorization
-    if (bearer === undefined) throw new jwt.JsonWebTokenError()
+    if (bearer === undefined) throw new jwt.JsonWebTokenError("No headers found")
     const token = bearer.slice(7)
+    console.log(token)
     
     const user = await UserModel.findOne({
       where: { token }
     })
-    if (user === null) throw new jwt.JsonWebTokenError()
+    if (user === null) throw new jwt.JsonWebTokenError("User not found")
       
     const decode = jwt.verify(token, secret)
     req.idUser = decode.id

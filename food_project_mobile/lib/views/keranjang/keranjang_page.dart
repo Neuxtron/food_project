@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_project/models/keranjang_model.dart';
-import 'package:food_project/models/produk_model.dart';
 import 'package:food_project/utils/app_constants.dart';
+import 'package:food_project/viewmodels/keranjang_riwayat_view_model.dart';
 import 'package:food_project/views/keranjang/keranjang_item.dart';
 import 'package:food_project/views/widgets/cu_button.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class KeranjangPage extends StatefulWidget {
   const KeranjangPage({super.key});
@@ -21,64 +22,19 @@ class _KeranjangPageState extends State<KeranjangPage> {
   List<KeranjangModel> get _listOrder {
     final List<KeranjangModel> listOrder = [];
 
-    for (var keranjang in _dummyKeranjang) {
+    for (var keranjang in _listKeranjang) {
       if (keranjang.isChecked) listOrder.add(keranjang);
     }
 
     return listOrder;
   }
 
-  final _dummyKeranjang = [
-    KeranjangModel(
-      produk: ProdukModel(
-        id: 0,
-        nama: "Korean Spicy Chicken",
-        harga: 15000,
-        gambar: [
-          "https://i.ytimg.com/vi/XnLWBoZn710/maxresdefault.jpg",
-          "https://i.ytimg.com/vi/XnLWBoZn710/maxresdefault.jpg",
-          "https://i.ytimg.com/vi/XnLWBoZn710/maxresdefault.jpg",
-        ],
-        deskripsi:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia tempora alias quod beatae eligendi, nemo quam deserunt ad ex modi natus sed quidem corporis perspiciatis. Molestiae, ratione blanditiis! Consequatur libero exercitationem est laudantium reprehenderit modi inventore impedit, quibusdam quas eligendi illum, a soluta dolorem quis, quaerat sit dolorum voluptates mollitia nihil corrupti rerum numquam ipsa saepe deserunt! Quisquam amet fuga necessitatibus natus, laborum repellendus omnis sapiente adipisci asperiores dicta labore voluptates? Recusandae nemo neque sapiente quia tenetur reprehenderit, dicta suscipit veniam temporibus atque magnam dolorem nam iste accusantium eius beatae velit porro ex explicabo ipsa quasi similique? Deleniti, laboriosam quibusdam?",
-        idKategori: 1,
-      ),
-    ),
-    KeranjangModel(
-      produk: ProdukModel(
-        id: 0,
-        nama: "Korean Spicy Chicken",
-        harga: 15000,
-        gambar: [
-          "https://i.ytimg.com/vi/XnLWBoZn710/maxresdefault.jpg",
-          "https://i.ytimg.com/vi/XnLWBoZn710/maxresdefault.jpg",
-          "https://i.ytimg.com/vi/XnLWBoZn710/maxresdefault.jpg",
-        ],
-        deskripsi:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia tempora alias quod beatae eligendi, nemo quam deserunt ad ex modi natus sed quidem corporis perspiciatis. Molestiae, ratione blanditiis! Consequatur libero exercitationem est laudantium reprehenderit modi inventore impedit, quibusdam quas eligendi illum, a soluta dolorem quis, quaerat sit dolorum voluptates mollitia nihil corrupti rerum numquam ipsa saepe deserunt! Quisquam amet fuga necessitatibus natus, laborum repellendus omnis sapiente adipisci asperiores dicta labore voluptates? Recusandae nemo neque sapiente quia tenetur reprehenderit, dicta suscipit veniam temporibus atque magnam dolorem nam iste accusantium eius beatae velit porro ex explicabo ipsa quasi similique? Deleniti, laboriosam quibusdam?",
-        idKategori: 1,
-      ),
-    ),
-    KeranjangModel(
-      produk: ProdukModel(
-        id: 0,
-        nama: "Korean Spicy Chicken",
-        harga: 15000,
-        gambar: [
-          "https://i.ytimg.com/vi/XnLWBoZn710/maxresdefault.jpg",
-          "https://i.ytimg.com/vi/XnLWBoZn710/maxresdefault.jpg",
-          "https://i.ytimg.com/vi/XnLWBoZn710/maxresdefault.jpg",
-        ],
-        deskripsi:
-            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia tempora alias quod beatae eligendi, nemo quam deserunt ad ex modi natus sed quidem corporis perspiciatis. Molestiae, ratione blanditiis! Consequatur libero exercitationem est laudantium reprehenderit modi inventore impedit, quibusdam quas eligendi illum, a soluta dolorem quis, quaerat sit dolorum voluptates mollitia nihil corrupti rerum numquam ipsa saepe deserunt! Quisquam amet fuga necessitatibus natus, laborum repellendus omnis sapiente adipisci asperiores dicta labore voluptates? Recusandae nemo neque sapiente quia tenetur reprehenderit, dicta suscipit veniam temporibus atque magnam dolorem nam iste accusantium eius beatae velit porro ex explicabo ipsa quasi similique? Deleniti, laboriosam quibusdam?",
-        idKategori: 1,
-      ),
-    ),
-  ];
+  List<KeranjangModel> get _listKeranjang =>
+      context.watch<KeranjangRiwayatViewModel>().listKeranjang;
 
   int get _total {
     int total = 0;
-    for (var keranjang in _dummyKeranjang) {
+    for (var keranjang in _listKeranjang) {
       if (keranjang.isChecked) {
         total += keranjang.produk.harga * keranjang.amount;
       }
@@ -87,8 +43,10 @@ class _KeranjangPageState extends State<KeranjangPage> {
   }
 
   void updateKeranjang(int index, bool isChecked, int amount) {
-    _dummyKeranjang[index].isChecked = isChecked;
-    _dummyKeranjang[index].amount = amount;
+    final listKeranjang =
+        context.read<KeranjangRiwayatViewModel>().listKeranjang;
+    listKeranjang[index].isChecked = isChecked;
+    listKeranjang[index].amount = amount;
     setState(() {});
   }
 
@@ -99,9 +57,9 @@ class _KeranjangPageState extends State<KeranjangPage> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-    // TODO: update keranjang api
+  void initState() {
+    super.initState();
+    context.read<KeranjangRiwayatViewModel>().getKeranjangRiwayat();
   }
 
   @override
@@ -110,9 +68,9 @@ class _KeranjangPageState extends State<KeranjangPage> {
       children: [
         Expanded(
           child: ListView.builder(
-            itemCount: _dummyKeranjang.length,
+            itemCount: _listKeranjang.length,
             itemBuilder: (context, index) {
-              final keranjang = _dummyKeranjang[index];
+              final keranjang = _listKeranjang[index];
               return KeranjangItem(
                 keranjang: keranjang,
                 updateKeranjang: updateKeranjang,

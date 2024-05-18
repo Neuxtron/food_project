@@ -100,7 +100,6 @@ class UserViewModel extends ChangeNotifier {
   }
 
   Future<bool> logout() async {
-    token = null;
     try {
       final response = await http.get(
         Uri.parse("$_endpoint/logout"),
@@ -109,12 +108,14 @@ class UserViewModel extends ChangeNotifier {
         },
       );
       log("Logout user:\n${response.body}");
+      token = null;
       if (response.statusCode == 200) {
         return true;
       }
     } catch (e) {
       log(e.toString());
     }
+    token = null;
     return false;
   }
 

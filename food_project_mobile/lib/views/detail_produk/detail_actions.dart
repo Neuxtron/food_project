@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:food_project/models/keranjang_model.dart';
 import 'package:food_project/models/produk_model.dart';
+import 'package:food_project/viewmodels/keranjang_riwayat_view_model.dart';
 import 'package:food_project/views/detail_produk/popup_tambah_troli.dart';
 import 'package:food_project/views/widgets/cu_button.dart';
+import 'package:provider/provider.dart';
 
 class DetailActions extends StatelessWidget {
   final ProdukModel produk;
@@ -14,6 +17,10 @@ class DetailActions extends StatelessWidget {
   });
 
   void tambahTroli(BuildContext context) {
+    final keranjang = KeranjangModel(produk: produk);
+    context
+        .read<KeranjangRiwayatViewModel>()
+        .updateKeranjang(keranjang: keranjang);
     Navigator.pop(context);
     Navigator.pop(context);
   }

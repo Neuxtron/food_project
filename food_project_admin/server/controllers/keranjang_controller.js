@@ -1,43 +1,18 @@
 const { Op } = require("sequelize")
 const KeranjangModel = require("../models/keranjang_model")
 const ProdukModel = require("../models/produk_model")
+const GambarProdukModel = require("../models/gambar_produk_model")
 
 class KeranjangController {
-  static keranjangByUser(req, res) {
+  static keranjangRiwayatByUser(req, res) {
     const idUser = req.idUser
 
     KeranjangModel.findAll({
-      include: [ProdukModel],
+      include: [{
+        model: ProdukModel,
+        include: ["gambar"]
+      }],
       where: { idUser, idOrder: null }
-    })
-      .then((data) => {
-        res.status(200).json({
-          status: true,
-          message: "Berhasil mengambil data keranjang",
-          data: data,
-        })
-      })
-      .catch((err) => {
-        console.log(err)
-        res.status(500).json({
-          status: false,
-          message: "Terjadi kesalahan, silahkan coba lagi",
-          data: {},
-        })
-      })
-  }
-
-  static riwayatByUser(req, res) {
-    const idUser = req.idUser
-
-    KeranjangModel.findAll({
-      include: [ProdukModel],
-      where: {
-        idUser,
-        idOrder: {
-          [Op.not]: null,
-        }
-      }
     })
       .then((data) => {
         res.status(200).json({
