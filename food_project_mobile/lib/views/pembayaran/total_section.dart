@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 
 class TotalSection extends StatelessWidget {
   final int harga;
-  final int ongkir;
+  final int? ongkir;
 
   const TotalSection({
     super.key,
@@ -13,9 +13,10 @@ class TotalSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hargaString = NumberFormat("###,###,###").format(harga);
-    final ongkirString = NumberFormat("###,###,###").format(ongkir);
-    final totalString = NumberFormat("###,###,###").format(ongkir + harga);
+    final formatter = NumberFormat("###,###,###");
+    final hargaString = formatter.format(harga);
+    final ongkirString = formatter.format(ongkir);
+    final totalString = formatter.format((ongkir ?? 0) + harga);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),

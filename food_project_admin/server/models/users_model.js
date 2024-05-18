@@ -2,6 +2,7 @@ const { DataTypes } = require("sequelize")
 const sequelize = require("../config/database")
 const bcrypt = require("bcrypt")
 const { saltRounds } = require("../utils/constants")
+const KecamatanModel = require("./kecamatan_model")
 
 const UserModel = sequelize.define("users", {
   id: {
@@ -18,12 +19,20 @@ const UserModel = sequelize.define("users", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  alamat: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   password: {
     type: DataTypes.STRING,
     allowNull: false,
   },
   token: {
     type: DataTypes.STRING,
+    allowNull: true,
+  },
+  idKecamatan: {
+    type: DataTypes.INTEGER,
     allowNull: true,
   },
 }, {
@@ -34,5 +43,7 @@ const UserModel = sequelize.define("users", {
     }
   }
 })
+
+UserModel.belongsTo(KecamatanModel, { foreignKey: "idKecamatan", onDelete: "CASCADE" })
 
 module.exports = UserModel

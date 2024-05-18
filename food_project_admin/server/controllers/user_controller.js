@@ -1,5 +1,5 @@
 const UserModel = require("../models/users_model")
-const { secret, toko } = require("../utils/constants")
+const { secret } = require("../utils/constants")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 
@@ -8,13 +8,13 @@ class UserController {
     const id = req.idUser
 
     UserModel.findOne({
-      where: { id }
+      where: { id },
     })
       .then((user) => {
         res.status(200).json({
           status: true,
           message: "Berhasil mengambil profil user",
-          data: { user, toko },
+          data: user,
         })
       })
       .catch((err) => {
@@ -31,15 +31,15 @@ class UserController {
     try {
 
       const data = req.body
-      const { email } = data
+      const { nama } = data
 
       const existingUser = await UserModel.findOne({
-        where: { email }
+        where: { nama }
       })
       if (existingUser) {
         res.status(409).json({
           status: false,
-          message: "Email susah terdaftar",
+          message: "Nama susah terdaftar",
           data: {},
         })
         return
@@ -56,7 +56,7 @@ class UserController {
       res.status(200).json({
         status: true,
         message: "Berhasil menambahkan user",
-        data: { user, token, toko },
+        data: { user, token },
       })
 
     } catch (error) {
@@ -105,7 +105,7 @@ class UserController {
         res.status(200).json({
           status: true,
           message: "Berhasil login",
-          data: { user, token, toko },
+          data: { user, token },
         })
       })
       

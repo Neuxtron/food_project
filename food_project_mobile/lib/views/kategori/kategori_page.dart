@@ -53,6 +53,7 @@ class KategoriPage extends StatelessWidget {
                   ),
                   clipBehavior: Clip.hardEdge,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Image.network(
                         produk.gambar[0],

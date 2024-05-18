@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 
 class SubmitSection extends StatelessWidget {
   final int harga;
-  final int ongkir;
+  final int? ongkir;
 
   const SubmitSection({
     super.key,
@@ -13,7 +13,7 @@ class SubmitSection extends StatelessWidget {
     required this.ongkir,
   });
 
-  int get _total => harga + ongkir;
+  int get _total => harga + (ongkir ?? 0);
 
   void submitPembayaran(BuildContext context) {
     // TODO: submit pembayaran

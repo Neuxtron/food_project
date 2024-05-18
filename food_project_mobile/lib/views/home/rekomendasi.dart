@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_project/utils/app_constants.dart';
 import 'package:food_project/viewmodels/produk_view_model.dart';
 import 'package:food_project/views/home/rekomendasi_item.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +9,12 @@ class Rekomendasi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final listProduk = context.read<ProdukViewModel>().listProduk;
+    final listProduk = context.watch<ProdukViewModel>().listProduk;
+    final status = context.watch<ProdukViewModel>().status;
+
+    if (status == ServerStatus.loading) {
+      return const CircularProgressIndicator();
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

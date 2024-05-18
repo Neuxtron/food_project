@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:food_project/models/produk_model.dart';
 import 'package:food_project/utils/app_constants.dart';
@@ -22,8 +24,21 @@ class RekomendasiItem extends StatelessWidget {
       elevation: 5,
       color: Colors.white,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.network(produk.gambar[0], width: double.infinity),
+          Expanded(
+            child: produk.gambar.isNotEmpty
+                ? Image.network(
+                    produk.gambar[0],
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      log(error.toString());
+                      return const Center(child: Text("No Image"));
+                    },
+                  )
+                : const Center(child: Text("No Image")),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             child: Column(

@@ -1,18 +1,18 @@
 const { DataTypes } = require("sequelize")
 const sequelize = require("../config/database")
 
-const GambarProdukModel = sequelize.define("gambar_produk", {
+const KecamatanModel = sequelize.define("kecamatan", {
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,
     autoIncrement: true,
   },
-  fileName: {
+  nama: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  idProduk: {
+  ongkir: {
     type: DataTypes.INTEGER,
     allowNull: true,
   },
@@ -20,4 +20,4 @@ const GambarProdukModel = sequelize.define("gambar_produk", {
   freezeTableName: true,
 })
 
-module.exports = GambarProdukModel
+module.exports = KecamatanModel

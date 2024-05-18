@@ -6,9 +6,8 @@ class UserViewModel extends ChangeNotifier {
     nama: "MIsteln",
     telepon: "0893830303",
     kecamatan: "Kota Lhokseumawe",
-    alamat: [
-      "Kost Diamond(kost belakang)\nMUARA SATU, KOTA LHOKSEUMAWE, NAGGROE ACEH DARUSSALAM"
-    ],
+    alamat:
+        "Kost Diamond(kost belakang)\nMUARA SATU, KOTA LHOKSEUMAWE, NAGGROE ACEH DARUSSALAM",
   );
 
   UserModel? get user => _user;

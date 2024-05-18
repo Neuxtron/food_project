@@ -1,33 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:food_project/models/kategori_model.dart';
+import 'package:food_project/viewmodels/kategori_view_model.dart';
+import 'package:provider/provider.dart';
 
 class Kategori extends StatelessWidget {
   const Kategori({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final listKategory = [
-      KategoriModel(
-        id: 1,
-        icon: "assets/images/noodles.png",
-        nama: "Noodle",
-      ),
-      KategoriModel(
-        id: 2,
-        icon: "assets/images/chickens.png",
-        nama: "Chicken",
-      ),
-      KategoriModel(
-        id: 3,
-        icon: "assets/images/snack.png",
-        nama: "Snack",
-      ),
-      KategoriModel(
-        id: 4,
-        icon: "assets/images/gyoza.png",
-        nama: "Gyoza",
-      ),
-    ];
+    List<KategoriModel> listKategori =
+        context.watch<KategoriViewModel>().listKategori;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +25,7 @@ class Kategori extends StatelessWidget {
           ),
         ),
         Row(
-          children: listKategory.map((kategori) {
+          children: listKategori.map((kategori) {
             return Expanded(
               child: InkWell(
                 onTap: () {
@@ -55,7 +37,7 @@ class Kategori extends StatelessWidget {
                     Image.asset(kategori.icon, width: 70),
                     const SizedBox(height: 10),
                     Text(
-                      kategori.nama,
+                      kategori.title,
                       style: const TextStyle(fontWeight: FontWeight.w600),
                     ),
                   ],

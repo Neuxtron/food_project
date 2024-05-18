@@ -1,15 +1,13 @@
 const { Sequelize } = require("sequelize");
-const ProdukModel = require("../models/produk_model")
+const MetodeBayarModel = require("../models/metode_bayar_model");
 
-class ProdukController {
-  static allProduk(req, res) {
-    ProdukModel.findAll({
-      include: ["gambar"]
-    })
+class MetodeBayarController {
+  static allMetodeBayar(req, res) {
+    MetodeBayarModel.findAll()
       .then((data) => {
         res.status(200).json({
           status: true,
-          message: "Berhasil mengambil data produk",
+          message: "Berhasil mengambil data metode pembayaran",
           data: data,
         })
       })
@@ -24,4 +22,4 @@ class ProdukController {
   }
 }
 
-module.exports = ProdukController
+module.exports = MetodeBayarController

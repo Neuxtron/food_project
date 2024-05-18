@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize")
 const sequelize = require("../config/database")
 const KategoriModel = require("./kategori_model")
+const GambarProdukModel = require("./gambar_produk_model")
 
 const ProdukModel = sequelize.define("produk", {
   id: {
@@ -34,5 +35,10 @@ const ProdukModel = sequelize.define("produk", {
 })
 
 ProdukModel.belongsTo(KategoriModel, { foreignKey: "idKategori", onDelete: "CASCADE" })
+ProdukModel.hasMany(GambarProdukModel, {
+  as: "gambar",
+  foreignKey: "idProduk",
+  onDelete: "CASCADE"
+})
 
 module.exports = ProdukModel

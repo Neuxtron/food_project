@@ -9,5 +9,11 @@ class MetodeBayarModel {
     required this.gambar,
   });
 
-  // TODO: from json
+  factory MetodeBayarModel.fromJson(Map<String, dynamic> json) {
+    return MetodeBayarModel(
+      id: json["id"],
+      nama: json["nama"],
+      gambar: json["gambar"],
+    );
+  }
 }
