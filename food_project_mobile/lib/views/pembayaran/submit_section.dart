@@ -6,23 +6,18 @@ import 'package:intl/intl.dart';
 class SubmitSection extends StatelessWidget {
   final int harga;
   final int? ongkir;
+  final bool loading;
+  final Function() submitOrder;
 
   const SubmitSection({
     super.key,
     required this.harga,
     required this.ongkir,
+    required this.loading,
+    required this.submitOrder,
   });
 
   int get _total => harga + (ongkir ?? 0);
-
-  void submitPembayaran(BuildContext context) {
-    // TODO: submit pembayaran
-    Navigator.pushReplacementNamed(
-      context,
-      "/bayar_berhasil",
-      arguments: _total,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,9 +56,10 @@ class SubmitSection extends StatelessWidget {
             ),
           ),
           CuButton(
-            onPressed: () => submitPembayaran(context),
+            onPressed: submitOrder,
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
             radius: 10,
+            loading: loading,
             child: const Text(
               "Beli",
               style: TextStyle(

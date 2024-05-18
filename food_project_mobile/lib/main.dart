@@ -4,6 +4,7 @@ import 'package:food_project/viewmodels/kategori_view_model.dart';
 import 'package:food_project/viewmodels/kecamatan_view_model.dart';
 import 'package:food_project/viewmodels/keranjang_riwayat_view_model.dart';
 import 'package:food_project/viewmodels/metode_bayar_view_model.dart';
+import 'package:food_project/viewmodels/order_view_model.dart';
 import 'package:food_project/viewmodels/produk_view_model.dart';
 import 'package:food_project/viewmodels/user_view_model.dart';
 import 'package:food_project/views/auth_check.dart';
@@ -32,6 +33,7 @@ class FoodProjectApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => KategoriViewModel()),
         ChangeNotifierProvider(create: (context) => KecamatanViewModel()),
         ChangeNotifierProvider(create: (context) => MetodeBayarViewModel()),
+        ChangeNotifierProvider(create: (context) => OrderViewModel()),
         ChangeNotifierProvider(
             create: (context) => KeranjangRiwayatViewModel()),
       ],

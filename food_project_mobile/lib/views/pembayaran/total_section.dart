@@ -15,7 +15,8 @@ class TotalSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final formatter = NumberFormat("###,###,###");
     final hargaString = formatter.format(harga);
-    final ongkirString = formatter.format(ongkir);
+    String? ongkirString;
+    if (ongkir != null) ongkirString = formatter.format(ongkir);
     final totalString = formatter.format((ongkir ?? 0) + harga);
 
     return Container(
@@ -62,7 +63,7 @@ class TotalSection extends StatelessWidget {
                 ),
               ),
               Text(
-                "Rp$ongkirString",
+                "Rp${ongkirString ?? ""}",
                 style: const TextStyle(
                   fontSize: 13,
                   color: Colors.black54,

@@ -3,13 +3,7 @@ import 'package:intl/intl.dart';
 
 class PengirimanSection extends StatelessWidget {
   final int? ongkir;
-
-  const PengirimanSection({
-    super.key,
-    required this.ongkir,
-  });
-
-  void ubahPengiriman() {}
+  const PengirimanSection({super.key, required this.ongkir});
 
   @override
   Widget build(BuildContext context) {
@@ -44,24 +38,16 @@ class PengirimanSection extends StatelessWidget {
           ),
           SizedBox(
             height: 50,
-            child: InkWell(
-              onTap: ubahPengiriman,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Reguler (Rp$ongkirString)",
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 13,
-                    ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Reguler (Rp$ongkirString)",
+                  style: const TextStyle(
+                    fontSize: 13,
                   ),
-                  const Icon(
-                    Icons.keyboard_arrow_right,
-                    color: Colors.black38,
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ],

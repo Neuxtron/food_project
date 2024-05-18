@@ -26,6 +26,7 @@ class _AuthCheckState extends State<AuthCheck> {
     final token = prefs.getString("TOKEN");
 
     viewModel.token = token;
+    if (token != null) viewModel.getProfil();
     setState(() => _loading = false);
   }
 

@@ -12,7 +12,7 @@ class KeranjangController {
         model: ProdukModel,
         include: ["gambar"]
       }],
-      where: { idUser, idOrder: null }
+      where: { idUser }
     })
       .then((data) => {
         res.status(200).json({

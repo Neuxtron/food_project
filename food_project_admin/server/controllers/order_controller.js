@@ -7,7 +7,6 @@ class OrderController {
     const listKeranjangRaw = req.body.keranjang
     const idUser = req.idUser
 
-    // TODO: id cod
     if (order.idMetodeBayar === 1) {
       order.status = "Dikirim"
     }

@@ -6,6 +6,7 @@ class AppConstants {
   static const background = Colors.white;
 
   static const baseUrl = "http://192.168.18.14:3000";
+  static const rekening = "71717171";
   static String? token;
 }
 

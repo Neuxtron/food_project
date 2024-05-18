@@ -1,3 +1,5 @@
+import 'package:food_project/utils/app_constants.dart';
+
 class MetodeBayarModel {
   final int id;
   final String nama;
@@ -10,10 +12,12 @@ class MetodeBayarModel {
   });
 
   factory MetodeBayarModel.fromJson(Map<String, dynamic> json) {
+    final gambar = json["gambar"];
+
     return MetodeBayarModel(
       id: json["id"],
       nama: json["nama"],
-      gambar: json["gambar"],
+      gambar: "${AppConstants.baseUrl}/images/metode_bayar/$gambar",
     );
   }
 }

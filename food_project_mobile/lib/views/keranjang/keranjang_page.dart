@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_project/models/keranjang_model.dart';
 import 'package:food_project/utils/app_constants.dart';
 import 'package:food_project/viewmodels/keranjang_riwayat_view_model.dart';
-import 'package:food_project/views/keranjang/keranjang_item.dart';
+import 'package:food_project/views/keranjang/keranjang_list_view.dart';
 import 'package:food_project/views/widgets/cu_button.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -30,11 +30,13 @@ class _KeranjangPageState extends State<KeranjangPage> {
   }
 
   List<KeranjangModel> get _listKeranjang =>
-      context.watch<KeranjangRiwayatViewModel>().listKeranjang;
+      context.read<KeranjangRiwayatViewModel>().listKeranjang;
 
   int get _total {
     int total = 0;
-    for (var keranjang in _listKeranjang) {
+    final listKeranjang =
+        context.watch<KeranjangRiwayatViewModel>().listKeranjang;
+    for (var keranjang in listKeranjang) {
       if (keranjang.isChecked) {
         total += keranjang.produk.harga * keranjang.amount;
       }
@@ -43,16 +45,17 @@ class _KeranjangPageState extends State<KeranjangPage> {
   }
 
   void updateKeranjang(int index, bool isChecked, int amount) {
-    final listKeranjang =
-        context.read<KeranjangRiwayatViewModel>().listKeranjang;
-    listKeranjang[index].isChecked = isChecked;
-    listKeranjang[index].amount = amount;
+    _listKeranjang[index].isChecked = isChecked;
+    _listKeranjang[index].amount = amount;
     setState(() {});
   }
 
   void submitBeli() {
     if (_listOrder.isNotEmpty) {
-      Navigator.pushNamed(context, "/pembayaran", arguments: _listOrder);
+      Navigator.pushNamed(context, "/pembayaran", arguments: _listOrder)
+          .then((_) {
+        context.read<KeranjangRiwayatViewModel>().getKeranjangRiwayat();
+      });
     }
   }
 
@@ -66,19 +69,7 @@ class _KeranjangPageState extends State<KeranjangPage> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Expanded(
-          child: ListView.builder(
-            itemCount: _listKeranjang.length,
-            itemBuilder: (context, index) {
-              final keranjang = _listKeranjang[index];
-              return KeranjangItem(
-                keranjang: keranjang,
-                updateKeranjang: updateKeranjang,
-                index: index,
-              );
-            },
-          ),
-        ),
+        KeranjangListView(updateKeranjang: updateKeranjang),
         const Divider(color: Colors.black12),
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),

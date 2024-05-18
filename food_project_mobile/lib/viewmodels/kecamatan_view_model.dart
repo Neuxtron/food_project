@@ -10,7 +10,10 @@ class KecamatanViewModel extends ChangeNotifier {
   final _endpoint = "${AppConstants.baseUrl}/kecamatan";
 
   List<KecamatanModel> _listKecamatan = [];
+  int? _ongkir;
+
   List<KecamatanModel> get listKecamatan => _listKecamatan;
+  int? get ongkir => _ongkir;
 
   Future getKecamatan() async {
     try {
@@ -26,16 +29,15 @@ class KecamatanViewModel extends ChangeNotifier {
     }
   }
 
-  Future<int?> ongkirById(int id) async {
+  Future getOngkir(int id) async {
     try {
       final response = await http.get(Uri.parse("$_endpoint/ongkir/$id"));
       log("Get ongir by id:\n${response.body}");
       if (response.statusCode == 200) {
-        return jsonDecode(response.body)["data"] as int;
+        _ongkir = jsonDecode(response.body)["data"] as int;
       }
     } catch (e) {
       log(e.toString());
     }
-    return null;
   }
 }

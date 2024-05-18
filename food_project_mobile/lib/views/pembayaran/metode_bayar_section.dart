@@ -22,7 +22,8 @@ class MetodeBayarSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final metodeBayar = listMetodeBayar[index];
+    MetodeBayarModel? metodeBayar;
+    if (listMetodeBayar.isNotEmpty) metodeBayar = listMetodeBayar[index];
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -54,15 +55,17 @@ class MetodeBayarSection extends StatelessWidget {
               onTap: () => ubahMetode(context),
               child: Row(
                 children: [
-                  Image.network(
-                    metodeBayar.gambar,
-                    height: double.infinity,
-                    width: 60,
-                  ),
+                  metodeBayar != null
+                      ? Image.network(
+                          metodeBayar.gambar,
+                          height: double.infinity,
+                          width: 60,
+                        )
+                      : const SizedBox(),
                   const SizedBox(width: 20),
                   Expanded(
                     child: Text(
-                      metodeBayar.nama,
+                      metodeBayar?.nama ?? "",
                       style: const TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 13,

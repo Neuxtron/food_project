@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:food_project/models/keranjang_model.dart';
 import 'package:food_project/models/metode_bayar_model.dart';
+import 'package:food_project/models/order_model.dart';
 import 'package:food_project/utils/app_constants.dart';
+import 'package:food_project/viewmodels/kecamatan_view_model.dart';
 import 'package:food_project/viewmodels/metode_bayar_view_model.dart';
+import 'package:food_project/viewmodels/order_view_model.dart';
+import 'package:food_project/viewmodels/user_view_model.dart';
 import 'package:food_project/views/pembayaran/alamat_section.dart';
 import 'package:food_project/views/pembayaran/metode_bayar_section.dart';
 import 'package:food_project/views/pembayaran/order_section.dart';
@@ -19,7 +23,8 @@ class PembayaranPage extends StatefulWidget {
 }
 
 class _PembayaranPageState extends State<PembayaranPage> {
-  int _indexMetodeBayar = 2;
+  int _indexMetodeBayar = 0;
+  bool _loading = false;
 
   int getHarga(List<KeranjangModel> listKeranjang) {
     int total = 0;
@@ -32,7 +37,48 @@ class _PembayaranPageState extends State<PembayaranPage> {
   List<MetodeBayarModel> get _listMetodeBayar =>
       context.read<MetodeBayarViewModel>().listMetodeBayar;
 
-  int? _ongkir;
+  int? get _ongkir => context.watch<KecamatanViewModel>().ongkir;
+
+  void getData() async {
+    final idKecamatan = context.read<UserViewModel>().user!.idKecamatan!;
+    await Future.wait([
+      context.read<KecamatanViewModel>().getOngkir(idKecamatan),
+      context.read<MetodeBayarViewModel>().getMetodeBayar(),
+    ]);
+    setState(() {});
+  }
+
+  void submitOrder(List<KeranjangModel> listKeranjang) {
+    setState(() => _loading = true);
+
+    final ongkir = context.read<KecamatanViewModel>().ongkir;
+    if (ongkir == null || _listMetodeBayar.isEmpty) return;
+    int total = getHarga(listKeranjang) + (ongkir);
+
+    final order = OrderModel(
+      metodeBayar: _listMetodeBayar[_indexMetodeBayar],
+      ongkir: ongkir,
+    );
+    context
+        .read<OrderViewModel>()
+        .createOrder(order, listKeranjang)
+        .then((value) {
+      if (value) {
+        Navigator.pushReplacementNamed(
+          context,
+          "/bayar_berhasil",
+          arguments: total,
+        );
+      }
+      setState(() => _loading = false);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +121,8 @@ class _PembayaranPageState extends State<PembayaranPage> {
             SubmitSection(
               harga: getHarga(listKeranjang),
               ongkir: _ongkir,
+              submitOrder: () => submitOrder(listKeranjang),
+              loading: _loading,
             ),
           ],
         ),
