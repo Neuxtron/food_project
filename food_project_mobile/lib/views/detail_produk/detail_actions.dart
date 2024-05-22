@@ -25,6 +25,11 @@ class DetailActions extends StatelessWidget {
     Navigator.pop(context);
   }
 
+  void beli(BuildContext context) {
+    final keranjang = KeranjangModel(produk: produk);
+    Navigator.pushNamed(context, "/pembayaran", arguments: [keranjang]);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -54,7 +59,7 @@ class DetailActions extends StatelessWidget {
           ),
         ),
         CuButton(
-          onPressed: () {},
+          onPressed: () => beli(context),
           padding: EdgeInsets.zero,
           color: const Color(0xFF906B0E),
           minWidth: 150,

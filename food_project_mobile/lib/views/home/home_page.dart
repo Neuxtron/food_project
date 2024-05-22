@@ -17,9 +17,10 @@ class _HomePageState extends State<HomePage> {
   final _searchController = TextEditingController();
   String _searchText = "";
 
-  void getData() {
-    context.read<ProdukViewModel>().getProduk();
+  void getData() async {
     context.read<KategoriViewModel>().getKategori();
+    await context.read<ProdukViewModel>().getProduk();
+    setState(() {});
   }
 
   @override

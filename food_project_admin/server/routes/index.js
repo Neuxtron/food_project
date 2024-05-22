@@ -8,6 +8,7 @@ const userRouter = require("./user_route")
 const orderRouter = require("./order_route")
 const metodeBayarRouter = require("./metode_bayar_route")
 const kecamatanRouter = require("./kecamatan_route")
+const AdminModel = require("../models/admin_model")
 
 router.use("/kategori", kategoriRouter)
 router.use("/produk", produkRouter)

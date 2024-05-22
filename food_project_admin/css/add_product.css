@@ -1,0 +1,97 @@
+.container {
+  background-color: white;
+  border-radius: 15px;
+  padding: 25px 20px;
+  margin-top: 20px;
+}
+.container * {
+  color: black;
+}
+.container h1 {
+  font-size: 1.2rem;
+}
+
+textarea {
+  resize: none;
+}
+
+form {
+  width: 50%;
+  margin-right: 50px;
+}
+input, select, textarea {
+  background-color: white;
+  font-size: .9rem;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#gambar-section {
+  position: relative;
+  width: calc(50% - 50px);
+}
+#gambar {
+  visibility: hidden;
+}
+#gambar-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  border: 2px dashed darkgrey;
+  padding: 30px;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 20px;
+  width: 100%;
+  overflow: auto;
+}
+#gambar-label:hover {
+  background-color: azure;
+}
+#gambar-label svg {
+  margin-bottom: 20px;
+}
+
+.gambar-item {
+  padding: 20px 0;
+}
+.gambar-item svg {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+.gambar-item p {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+  overflow: hidden;
+  margin: 0 20px;
+}
+
+.dot {
+  width: 15px;
+  height: 15px;
+  background-color: #4A69E2;
+  border-radius: 99px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+#actions {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  gap: 20px;
+}
+#actions > * {
+  width: calc(50% - 20px);
+  padding: 13px 0;
+  font-size: 1rem;
+}

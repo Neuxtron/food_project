@@ -1,0 +1,86 @@
+tr > *:nth-child(2) {
+  max-width: 200px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.cards {
+  display: flex;
+  flex-direction: row; 
+  gap: 20px; 
+}
+
+.card {
+  background-color: #f3f3f3;
+  margin-top: 10px;
+  padding: 20px;
+  border-radius: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 350px;
+}
+
+.card-text p {
+  margin: 0;
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.card-icon {
+  margin-right: 5px;
+  margin-top: 10px;
+  width: 30px;
+  height: 30px;
+  background-color: #900E0E;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.card-stats {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-number {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.card-percentage {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+}
+
+.cards-order-details{
+  display: flex;
+  flex-direction: row; 
+  gap: 150px;
+}
+
+.card-order-details {
+  border: 2px solid black;
+  border-radius: 5px;
+  margin-top: 20px;
+  padding-right: 10px;
+}
+
+.card-content-order-details {
+  display: flex;
+  align-items: center;
+}
+
+.card-icon-order-details {
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+  background-color: #900E0E;
+  padding: 15px;
+  border-radius: 15px;
+}

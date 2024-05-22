@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:food_project/utils/app_constants.dart';
 import 'package:food_project/viewmodels/user_view_model.dart';
@@ -13,7 +15,10 @@ class BayarBerhasilPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final total = ModalRoute.of(context)!.settings.arguments as int;
     final totalString = NumberFormat("###,###,###").format(total);
-    final transfer = total + context.read<UserViewModel>().user!.id!;
+
+    final user = context.watch<UserViewModel>().user;
+    log(user?.id.toString() ?? "NO USER");
+    final transfer = total + (user?.id ?? 0);
     final transferString = NumberFormat("###,###,###").format(transfer);
 
     final formatter = DateFormat("dd-MM-yyyy hh.mm");

@@ -78,7 +78,7 @@ class UserViewModel extends ChangeNotifier {
     return "Terjadi kesalahan, silahkan coba lagi";
   }
 
-  void getProfil() async {
+  Future getProfil() async {
     try {
       final response = await http.get(
         Uri.parse(_endpoint),

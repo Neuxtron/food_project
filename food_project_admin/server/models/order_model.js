@@ -5,10 +5,10 @@ const MetodeBayarModel = require("./metode_bayar_model")
 
 const OrderModel = sequelize.define("orders", {
   id: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,
-    defaultValue: DataTypes.UUIDV4,
+    autoIncrement: true,
   },
   idUser: {
     type: DataTypes.INTEGER,

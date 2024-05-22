@@ -51,6 +51,9 @@ class MetodeBayarPage extends StatelessWidget {
                       metodeBayar.gambar,
                       height: 50,
                       width: 60,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const SizedBox();
+                      },
                     ),
                     const SizedBox(width: 20),
                     Expanded(

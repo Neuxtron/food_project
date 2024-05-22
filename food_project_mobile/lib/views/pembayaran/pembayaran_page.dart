@@ -40,12 +40,14 @@ class _PembayaranPageState extends State<PembayaranPage> {
   int? get _ongkir => context.watch<KecamatanViewModel>().ongkir;
 
   void getData() async {
+    setState(() => _loading = true);
     final idKecamatan = context.read<UserViewModel>().user!.idKecamatan!;
     await Future.wait([
       context.read<KecamatanViewModel>().getOngkir(idKecamatan),
       context.read<MetodeBayarViewModel>().getMetodeBayar(),
+      context.read<UserViewModel>().getProfil(),
     ]);
-    setState(() {});
+    setState(() => _loading = false);
   }
 
   void submitOrder(List<KeranjangModel> listKeranjang) {
@@ -55,20 +57,24 @@ class _PembayaranPageState extends State<PembayaranPage> {
     if (ongkir == null || _listMetodeBayar.isEmpty) return;
     int total = getHarga(listKeranjang) + (ongkir);
 
+    final metodeBayar = _listMetodeBayar[_indexMetodeBayar];
     final order = OrderModel(
-      metodeBayar: _listMetodeBayar[_indexMetodeBayar],
+      metodeBayar: metodeBayar,
       ongkir: ongkir,
     );
     context
         .read<OrderViewModel>()
         .createOrder(order, listKeranjang)
         .then((value) {
-      if (value) {
+      if (!value) return;
+      if (metodeBayar.nama == "Transfer Bank") {
         Navigator.pushReplacementNamed(
           context,
           "/bayar_berhasil",
           arguments: total,
         );
+      } else {
+        Navigator.pop(context);
       }
       setState(() => _loading = false);
     });

@@ -41,7 +41,7 @@ class UserController {
       if (existingUser) {
         res.status(409).json({
           status: false,
-          message: "Nama susah terdaftar",
+          message: "Nama sudah terdaftar",
           data: {},
         })
         return

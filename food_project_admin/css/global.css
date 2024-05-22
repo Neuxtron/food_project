@@ -1,0 +1,72 @@
+:root {
+  --primary: #900E0E;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins";
+  z-index: 0;
+}
+
+.flex { display: flex; }
+.col { flex-direction: column; }
+.items-center { align-items: center; }
+
+input.auth {
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  margin: 10px 0;
+  border-bottom: 1px solid grey;
+  font-size: 1.2rem;
+  outline: none;
+}
+
+button.filled, .btn-filled {
+  border-radius: 8px;
+  background-color: var(--primary);
+  padding: 8px 16px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+}
+button.filled:hover, .btn-filled:hover {
+  background-color: color-mix(in srgb, var(--primary) 80%, white);
+}
+
+button.outlined, .btn-outlined {
+  border-radius: 8px;
+  background-color: transparent;
+  padding: 8px 16px;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+}
+button.outlined:hover, .btn-outlined:hover {
+  background-color: #FFF3;
+}
+
+button.outlined.active, .btn-outlined.active {
+  background-color: white;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins-Regular.ttf');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins-SemiBold.ttf');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins-Bold.ttf');
+  font-weight: bold;
+}

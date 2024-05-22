@@ -19,7 +19,7 @@ class _RiwayatPageState extends State<RiwayatPage> {
 
   @override
   Widget build(BuildContext context) {
-    final listOrder = context.read<KeranjangRiwayatViewModel>().listRiwayat;
+    final listOrder = context.watch<KeranjangRiwayatViewModel>().listRiwayat;
 
     return ListView.builder(
       itemCount: listOrder.length,

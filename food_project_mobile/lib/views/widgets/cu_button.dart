@@ -37,7 +37,7 @@ class CuButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radius),
         ),
-        disabledColor: AppConstants.primary.withOpacity(.5),
+        disabledColor: color.withOpacity(.5),
         padding: padding,
         child: child,
       ),

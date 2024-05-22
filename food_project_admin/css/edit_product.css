@@ -1,0 +1,9 @@
+#submit {
+  background-color: #232321;
+}
+#submit:hover {
+  background-color: color-mix(in srgb, #232321 80%, white);;
+}
+#actions > * {
+  width: calc(100% / 3 - 20px);
+}

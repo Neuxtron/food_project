@@ -60,6 +60,9 @@ class MetodeBayarSection extends StatelessWidget {
                           metodeBayar.gambar,
                           height: double.infinity,
                           width: 60,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const SizedBox();
+                          },
                         )
                       : const SizedBox(),
                   const SizedBox(width: 20),

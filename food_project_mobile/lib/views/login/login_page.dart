@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
       _error = "";
     });
     final nama = _namaController.text.trim();
-    final password = _passwordController.text.trim();
+    final password = _passwordController.text;
     context.read<UserViewModel>().login(nama, password).then((error) {
       setState(() {
         _loading = false;

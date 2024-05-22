@@ -24,7 +24,7 @@ const KeranjangModel = sequelize.define("keranjang", {
     allowNull: false,
   },
   idOrder: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: true,
   },
 }, {

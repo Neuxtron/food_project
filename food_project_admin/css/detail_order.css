@@ -1,0 +1,133 @@
+.container {
+  background-color: white;
+  border-radius: 15px;
+  padding: 25px 20px;
+  margin-top: 20px;
+}
+.container * {
+  color: black;
+}
+.container h1 {
+  font-size: 1.2rem;
+}
+
+#header > svg {
+  margin-right: 10px;
+}
+
+.filled, button.filled, button.filled:hover {
+  cursor: pointer;
+  background-color: #F4F2F2;
+  color: black;
+  padding: 15px 10px;
+  border-radius: 8px;
+  border: none;
+  -moz-appearance:none; /* Firefox */
+  -webkit-appearance:none; /* Safari and Chrome */
+  appearance:none;
+}
+div.filled {
+  position: relative;
+  padding: 0;
+  align-items: center;
+  padding-left: 5px;
+}
+div.filled svg {
+  position: absolute;
+  right: 10px;
+}
+select.filled {
+  padding-right: 35px;
+  width: 200px;
+}
+button.filled {
+  width: 130px;
+  margin-left: 15px;
+}
+
+form {
+  margin-left: auto;
+}
+
+#order-status, #order-status:hover {
+  background-color: var(--primary);
+  cursor: default;
+  color: white;
+  font-size: .8rem;
+  padding: 8px 10px;
+  margin-left: 20px;
+}
+
+.cards {
+  display: flex;
+  margin-top: 20px;
+  gap: 20px;
+}
+.card {
+  display: flex;
+  border-radius: 10px;
+  border: 1px solid lightgrey;
+  padding: 15px 18px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: calc(100% / 3 - 20px);
+  height: 130px;
+  box-sizing: border-box;
+}
+.icon {
+  display: flex;
+  background-color: var(--primary);
+  border-radius: 10px;
+  height: fit-content;
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+.icon svg {
+  margin: auto;
+}
+.card h1 {
+  color: var(--primary);
+}
+.card p {
+  font-size: .9rem;
+  font-weight: 600;
+  color: grey;
+}
+
+th {
+  font-size: 1rem;
+  color: grey !important;
+}
+td {
+  font-size: .9rem;
+}
+td img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 0 20px;
+}
+tr:hover td {
+  background-color: transparent;
+  cursor: default;
+}
+
+#total-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 30px;
+  align-items: end;
+  font-weight: 600;
+  font-size: .9rem;
+}
+#total-section > div {
+  width: 300px;
+  justify-content: space-between;
+}
+
+#grand-total {
+  font-size: 1.3rem;
+}
