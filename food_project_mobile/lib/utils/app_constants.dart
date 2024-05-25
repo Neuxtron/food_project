@@ -5,7 +5,7 @@ class AppConstants {
   static const secondary = Color(0xFF906B0E);
   static const background = Colors.white;
 
-  static const baseUrl = "http://192.168.143.58:3000";
+  static const baseUrl = "http://192.168.18.14:3000";
   static const rekening = "71717171"; // TODO rekening
   static String? token;
 }

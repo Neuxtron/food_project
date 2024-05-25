@@ -49,7 +49,7 @@ include "./helper/auth.php";
                 
             $sql = "
                 SELECT orders.*,
-                users.nama,
+                users.nama, users.id as idUser,
                 metode_bayar.nama as metodeBayar
                 FROM orders LEFT JOIN users ON users.id=orders.idUser
                 LEFT JOIN metode_bayar ON metode_bayar.id=orders.idMetodeBayar
@@ -92,7 +92,7 @@ include "./helper/auth.php";
                         <td><?= $order["metodeBayar"] ?></td>
                         <td><?= $order["nama"] ?></td>
                         <td><?= $order["status"] ?></td>
-                        <td>RP <?= number_format($amount) ?></td>
+                        <td>RP <?= number_format($amount + $order["idUser"]) ?></td>
                     </tr>
                     
                     <?php

@@ -93,7 +93,7 @@ $selesai = $conn->query($sql)->fetch_assoc()["total"];
         <tbody>
             <?php
             
-            $sql = "SELECT orders.*, users.nama FROM orders LEFT JOIN users ON users.id=orders.idUser ORDER BY createdAt DESC LIMIT 6";
+            $sql = "SELECT orders.*, users.id as idUser, users.nama FROM orders LEFT JOIN users ON users.id=orders.idUser ORDER BY createdAt DESC LIMIT 6";
             
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
@@ -129,7 +129,7 @@ $selesai = $conn->query($sql)->fetch_assoc()["total"];
                         <td><?= date_format($date, "M j\\t\h, Y") ?></td>
                         <td><?= $order["nama"] ?></td>
                         <td><?= $order["status"] ?></td>
-                        <td>RP <?= number_format($amount) ?></td>
+                        <td>RP <?= number_format($amount + $order["idUser"]) ?></td>
                     </tr>
                     
                     <?php

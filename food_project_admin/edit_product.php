@@ -95,7 +95,7 @@ $produk = $conn->query($sql)->fetch_assoc();
           <div id="actions" class="flex">
             <button class="filled" id="submit">Update</button>
             <button class="filled" id="delete">Delete</button>
-            <button class="outlined active">Cancel</button>
+            <a href="./all_products.php" class="btn-outlined active">Cancel</a>
           </div>
         </div>
       </div>

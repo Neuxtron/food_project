@@ -44,6 +44,7 @@ button.outlined, .btn-outlined {
   color: white;
   cursor: pointer;
   text-decoration: none;
+  text-align: center;
 }
 button.outlined:hover, .btn-outlined:hover {
   background-color: #FFF3;

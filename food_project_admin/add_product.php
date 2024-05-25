@@ -69,7 +69,7 @@ include "./helper/auth.php";
           <div id="gambar-holder"></div>
           <div id="actions" class="flex">
             <button class="filled" id="submit">Add</button>
-            <button class="outlined active">Cancel</button>
+            <a href="./all_products.php" class="btn-outlined active">Cancel</a>
           </div>
         </div>
       </div>

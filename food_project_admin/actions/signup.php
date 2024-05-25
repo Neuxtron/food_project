@@ -36,7 +36,7 @@ $msg = checkInput();
 $route = "../signup.php";
 
 if ($msg == "") {
-  $sql = "INSERT INTO admin (firstName, lastName, email, password) VALUES ('$firstName', '$pemda', '$email', '$password')";
+  $sql = "INSERT INTO admin (firstName, lastName, email, password) VALUES ('$firstName', '$lastName', '$email', '$password')";
   $result = $conn->query($sql);
   
   if ($result) {
