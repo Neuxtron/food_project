@@ -24,7 +24,10 @@ class DetailDeskripsi extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 10),
-              Text(deskripsi),
+              Text(
+                deskripsi,
+                textAlign: TextAlign.justify,
+              ),
             ],
           ),
         ),

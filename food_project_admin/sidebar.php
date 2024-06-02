@@ -22,6 +22,12 @@
                     ORDER LIST
                 </a>
             </li>
+            <li>
+                <a href="customer_list.php" class="fill" id="nav-customers">
+                    <?php include "./assets/ic_orders.svg" ?>
+                    CUSTOMERS LIST
+                </a>
+            </li>
         </ul>
     </nav>
 </div>

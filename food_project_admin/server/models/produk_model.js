@@ -15,7 +15,7 @@ const ProdukModel = sequelize.define("produk", {
     allowNull: false,
   },
   deskripsi: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   harga: {
