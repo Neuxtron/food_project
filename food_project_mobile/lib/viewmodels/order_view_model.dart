@@ -4,12 +4,14 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:food_project/models/keranjang_model.dart';
 import 'package:food_project/models/order_model.dart';
+import 'package:food_project/models/riwayat_model.dart';
 import 'package:food_project/utils/app_constants.dart';
 import 'package:food_project/utils/app_helpers.dart';
 import 'package:http/http.dart' as http;
 
 class OrderViewModel extends ChangeNotifier {
   final _endpoint = "${AppConstants.baseUrl}/order";
+  List<RiwayatModel> listRiwayat = [];
 
   Future<bool> createOrder(
       OrderModel order, List<KeranjangModel> listKeranjang) async {
@@ -33,6 +35,26 @@ class OrderViewModel extends ChangeNotifier {
     } catch (e) {
       log(e.toString());
       return false;
+    }
+  }
+
+  Future getRiwayat() async {
+    final token = AppHelpers.token!;
+    try {
+      final response = await http.get(
+        Uri.parse(_endpoint),
+        headers: {
+          "Authorization": "Bearer $token",
+        },
+      );
+      log("Get riwayat:\n${response.body}");
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body)["data"] as List;
+        listRiwayat = data.map((e) => RiwayatModel.fromJson(e)).toList();
+        notifyListeners();
+      }
+    } catch (e) {
+      log(e.toString());
     }
   }
 }

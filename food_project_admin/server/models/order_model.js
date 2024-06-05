@@ -2,6 +2,7 @@ const { DataTypes } = require("sequelize")
 const sequelize = require("../config/database")
 const UserModel = require("./users_model")
 const MetodeBayarModel = require("./metode_bayar_model")
+const KeranjangModel = require("./keranjang_model")
 
 const OrderModel = sequelize.define("orders", {
   id: {
@@ -33,5 +34,6 @@ const OrderModel = sequelize.define("orders", {
 
 OrderModel.belongsTo(UserModel, { foreignKey: "idUser", onDelete: "CASCADE" })
 OrderModel.belongsTo(MetodeBayarModel, { foreignKey: "idMetodeBayar", onDelete: "CASCADE" })
+OrderModel.hasMany(KeranjangModel, { as: "keranjang", foreignKey: "idOrder", onDelete: "CASCADE" })
 
 module.exports = OrderModel

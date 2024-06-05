@@ -11,6 +11,7 @@ import 'package:food_project/views/auth_check.dart';
 import 'package:food_project/views/bayar_berhasil/bayar_berhasil_page.dart';
 import 'package:food_project/views/daftar/daftar_page.dart';
 import 'package:food_project/views/detail_produk/detail_produk_page.dart';
+import 'package:food_project/views/detail_riwayat/detail_riwayat_page.dart';
 import 'package:food_project/views/kategori/kategori_page.dart';
 import 'package:food_project/views/pembayaran/metode_bayar_page.dart';
 import 'package:food_project/views/pembayaran/pembayaran_page.dart';
@@ -57,6 +58,7 @@ class FoodProjectApp extends StatelessWidget {
           "/pembayaran": (context) => const PembayaranPage(),
           "/metode_bayar": (context) => const MetodeBayarPage(),
           "/bayar_berhasil": (context) => const BayarBerhasilPage(),
+          "/detail_riwayat": (context) => const DetailRiwayatPage(),
         },
       ),
     );

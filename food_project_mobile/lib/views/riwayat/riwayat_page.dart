@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_project/viewmodels/keranjang_riwayat_view_model.dart';
+import 'package:food_project/viewmodels/order_view_model.dart';
 import 'package:food_project/views/riwayat/order_item.dart';
 import 'package:provider/provider.dart';
 
@@ -14,18 +14,18 @@ class _RiwayatPageState extends State<RiwayatPage> {
   @override
   void initState() {
     super.initState();
-    context.read<KeranjangRiwayatViewModel>().getKeranjangRiwayat();
+    context.read<OrderViewModel>().getRiwayat();
   }
 
   @override
   Widget build(BuildContext context) {
-    final listOrder = context.watch<KeranjangRiwayatViewModel>().listRiwayat;
+    final listOrder = context.watch<OrderViewModel>().listRiwayat;
 
     return ListView.builder(
       itemCount: listOrder.length,
       itemBuilder: (context, index) {
-        final order = listOrder[index];
-        return OrderItem(keranjang: order);
+        final riwayat = listOrder[index];
+        return OrderItem(riwayat: riwayat);
       },
     );
   }
